@@ -3,3 +3,8 @@ packages/
 .vs/
 SuperMemoAssistant.Services.HTML/bin/
 SuperMemoAssistant.Services.HTML/obj/
+
+SuperMemoAssistant.Interop/bin/
+SuperMemoAssistant.Interop/obj/
+
+

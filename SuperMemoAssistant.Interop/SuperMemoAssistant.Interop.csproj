@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{60A1324B-6F87-4B88-881B-DC91C08B70BF}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>SuperMemoAssistant.Interop</RootNamespace>
+        <AssemblyName>SuperMemoAssistant.Interop</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Xml"/>
+        
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.IO.Compression" />
+        <Reference Include="System.Net" />
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Runtime.Remoting" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xaml" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="UIAutomationProvider" />
+        <Reference Include="WindowsBase" />
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Anotar.Serilog.Fody" Version="5.1.3" PrivateAssets="All" />
+        <PackageReference Include="Extensions.System.IO" Version="0.1.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.1.0" />
+        <PackageReference Include="PluginManager.Interop" Version="0.2.1.51" />
+        <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" PrivateAssets="All" />
+        <PackageReference Include="Serilog" Version="2.10.0" />
+        <PackageReference Include="Serilog.Exceptions" Version="6.1.0" />
+        <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
+        <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+        <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+        <PackageReference Include="Unofficial.Microsoft.mshtml" Version="7.0.3300" />
+    </ItemGroup>
+    
+    
+    
+    <ItemGroup>
+        <Compile Include="Exceptions\SMAException.cs" />
+        <Compile Include="Extensions\AssemblyEx.cs" />
+        <Compile Include="Extensions\BinaryReaderEx.cs" />
+        <Compile Include="Extensions\ButtonEx.cs" />
+        <Compile Include="Extensions\CollectionEx.cs" />
+        <Compile Include="Extensions\DelegateEx.cs" />
+        <Compile Include="Extensions\DependencyObjectEx.cs" />
+        <Compile Include="Extensions\DictionaryEx.cs" />
+        <Compile Include="Extensions\ElemCreationResultEx.cs" />
+        <Compile Include="Extensions\EnumEx.cs" />
+        <Compile Include="Extensions\ExceptionEx.cs" />
+        <Compile Include="Extensions\FileDialogEx.cs" />
+        <Compile Include="Extensions\FileEx.cs" />
+        <Compile Include="Extensions\GroupCollectionEx.cs" />
+        <Compile Include="Extensions\IComponentEx.cs" />
+        <Compile Include="Extensions\IControlEx.cs" />
+        <Compile Include="Extensions\IControlHtmlEx.cs" />
+        <Compile Include="Extensions\IEnumerableEx.cs" />
+        <Compile Include="Extensions\ImageEx.cs" />
+        <Compile Include="Extensions\JsonEx.cs" />
+        <Compile Include="Extensions\ListBoxEx.cs" />
+        <Compile Include="Extensions\NitoAsyncEx.cs" />
+        <Compile Include="Extensions\ObjectEx.cs" />
+        <Compile Include="Extensions\PathEx.cs" />
+        <Compile Include="Extensions\ProcessEx.cs" />
+        <Compile Include="Extensions\RemotingServicesEx.cs" />
+        <Compile Include="Extensions\StreamEx.cs" />
+        <Compile Include="Extensions\StringEx.cs" />
+        <Compile Include="Extensions\TaskEx.cs" />
+        <Compile Include="Extensions\TextBoxEx.cs" />
+        <Compile Include="Extensions\TreeViewEx.cs" />
+        <Compile Include="Extensions\TypeEx.cs" />
+        <Compile Include="Extensions\WindowEx.cs" />
+        <Compile Include="Interop\Plugins\ISMAPlugin.cs" />
+        <Compile Include="Interop\Plugins\PluginApp.xaml.cs" />
+        <Compile Include="Interop\Plugins\PluginHost.cs" />
+        <Compile Include="Interop\Plugins\PluginMessage.cs" />
+        <Compile Include="Interop\Plugins\SMAPluginBase.cs" />
+        <Compile Include="Interop\SMA\ISuperMemoAssistant.cs" />
+        <Compile Include="Interop\SMA\Notifications\INotificationManager.cs" />
+        <Compile Include="Interop\SMA\Notifications\ToastActivationData.cs" />
+        <Compile Include="Interop\SMConst.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\Base\ComponentGroupBase.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\Base\ComponentHtmlBase.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\Base\ComponentImageBase.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\Base\ComponentSoundBase.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponent.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentHtml.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentImage.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentRtf.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentShapes.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentSound.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentSpelling.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentText.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Components\IComponentVideo.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Contents\ContentBase.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Contents\ContentTypeFlags.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Contents\ImageContent.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Contents\SoundContent.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Contents\TextContent.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Controls\IControl.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Controls\IControlGroup.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Controls\IControlHtml.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Controls\IControlImage.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Controls\IControlRtf.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Controls\IControlText.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Controls\IControlTextBase.cs" />
+        <Compile Include="Interop\SuperMemo\Content\IComponentGroup.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Models\AtFlags.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Models\ComponentFieldFlags.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Models\ComponentType.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Models\ImageStretchMode.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Models\MediaPanelType.cs" />
+        <Compile Include="Interop\SuperMemo\Content\Models\TextAlignment.cs" />
+        <Compile Include="Interop\SuperMemo\Core\SMCollection.cs" />
+        <Compile Include="Interop\SuperMemo\Core\SMCollectionEx.cs" />
+        <Compile Include="Interop\SuperMemo\Core\SMEventArgs.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Builders\ElementBuilder.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Builders\References.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\IElementRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Models\ElemCreationFlags.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Models\ElemCreationResult.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Models\ElemCreationResultCodes.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Models\ElementDisplayState.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Models\ElementFieldFlags.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Models\ElementStatus.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Models\ElementType.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Types\ElementWrapper.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Types\IConceptGroup.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Types\IElement.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Types\IItem.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Types\ITask.cs" />
+        <Compile Include="Interop\SuperMemo\Elements\Types\ITopic.cs" />
+        <Compile Include="Interop\SuperMemo\ISuperMemo.cs" />
+        <Compile Include="Interop\SuperMemo\ISuperMemoEx.cs" />
+        <Compile Include="Interop\SuperMemo\Learning\LearningMode.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Members\IBinary.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Members\IConcept.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Members\IImage.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Members\IRegistryMember.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Members\ISound.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Members\ITemplate.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Members\IText.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Members\IVideo.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Models\TemplateUseMode.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Types\IBinaryRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Types\IConceptRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Types\IImageRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Types\IRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Types\ISoundRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Types\ITemplateRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Types\ITextRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\Registry\Types\IVideoRegistry.cs" />
+        <Compile Include="Interop\SuperMemo\UI\Element\DisplayState.cs" />
+        <Compile Include="Interop\SuperMemo\UI\Element\IElementWdw.cs" />
+        <Compile Include="Interop\SuperMemo\UI\IWdw.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Services\Configuration\ConfigurationService.Collection.cs" />
+        <Compile Include="Services\Configuration\ConfigurationService.cs" />
+        <Compile Include="Services\Configuration\ConfigurationService.Plugin.cs" />
+        <Compile Include="Services\IO\Diagnostics\Logger.cs" />
+        <Compile Include="Services\IO\Diagnostics\LoggerCfg.cs" />
+        <Compile Include="Services\IO\Diagnostics\LoggerFactory.cs" />
+        <Compile Include="Services\IO\HotKeys\HotKeyCfg.cs" />
+        <Compile Include="Services\IO\HotKeys\HotKeyData.cs" />
+        <Compile Include="Services\IO\HotKeys\HotKeyManager.cs" />
+        <Compile Include="Services\IO\Keyboard\IKeyboardHookService.cs" />
+        <Compile Include="Services\IO\Keyboard\IKeyboardHotKeyService.cs" />
+        <Compile Include="Services\IO\Keyboard\KeyboardHook.cs" />
+        <Compile Include="Services\IO\Keyboard\KeyboardHook.EventArgs.cs" />
+        <Compile Include="Services\IO\Keyboard\KeyboardHotKeyService.cs" />
+        <Compile Include="Services\Svc.cs" />
+        <Compile Include="Shared\Interop\Configs\SMAPreInitCfg.cs" />
+        <Compile Include="Shared\Interop\SMAConst.cs" />
+        <Compile Include="Shared\Interop\SMAExecutableInfo.cs" />
+        <Compile Include="Shared\Interop\SMAFileSystem.cs" />
+        <Compile Include="Sys\ClipboardHelper.cs" />
+        <Compile Include="Sys\ClipboardSnapshot.cs" />
+        <Compile Include="Sys\Collections\BiDictionary.cs" />
+        <Compile Include="Sys\Collections\ConcurrentBiDictionary.cs" />
+        <Compile Include="Sys\Collections\ObservableHashSet.cs" />
+        <Compile Include="Sys\ComponentModel\INotifyPropertyChangedEx.cs" />
+        <Compile Include="Sys\ComponentModel\PropertyChangedDelegate.cs" />
+        <Compile Include="Sys\COM\InternetExplorer\IEComHelper.cs" />
+        <Compile Include="Sys\Converters\Json\ColorToStringJsonConverter.cs" />
+        <Compile Include="Sys\Converters\Json\IComponentGroupToComponentGroupIdJsonConverter.cs" />
+        <Compile Include="Sys\Converters\Json\IConceptToConceptIdJsonConverter.cs" />
+        <Compile Include="Sys\Converters\Json\IElementToElementIdJsonConverter.cs" />
+        <Compile Include="Sys\Converters\Json\ITemplateToTemplateIdJsonConverter.cs" />
+        <Compile Include="Sys\Converters\Json\ObjectToStringJsonConverter.cs" />
+        <Compile Include="Sys\Drawing\ImageWrapper.cs" />
+        <Compile Include="Sys\EmptyDisposable.cs" />
+        <Compile Include="Sys\ForceAssemblyReferenceAttribute.cs" />
+        <Compile Include="Sys\Index2D.cs" />
+        <Compile Include="Sys\IO\Devices\HotKey.cs" />
+        <Compile Include="Sys\IO\Devices\HotKeyEventArgs.cs" />
+        <Compile Include="Sys\IO\Devices\Keyboard.cs" />
+        <Compile Include="Sys\IO\Devices\KeyCollection.cs" />
+        <Compile Include="Sys\IO\Devices\KeyModifiers.cs" />
+        <Compile Include="Sys\IO\Devices\Mouse.cs" />
+        <Compile Include="Sys\IO\Devices\Native.cs" />
+        <Compile Include="Sys\IO\Devices\VKey.cs" />
+        <Compile Include="Sys\IO\IniFile.cs" />
+        <Compile Include="Sys\Net\UriEx.cs" />
+        <Compile Include="Sys\Remoting\ActionProxy.cs" />
+        <Compile Include="Sys\Remoting\RemoteCancellationToken.cs" />
+        <Compile Include="Sys\Remoting\RemoteCancellationTokenSource.cs" />
+        <Compile Include="Sys\Remoting\RemoteTask.cs" />
+        <Compile Include="Sys\Remoting\RemoteTask.Static.cs" />
+        <Compile Include="Sys\Remoting\RemoteTaskEx.cs" />
+        <Compile Include="Sys\Security\Cryptography\Crc32.cs" />
+        <Compile Include="Sys\Span.cs" />
+        <Compile Include="Sys\Threading\DelayedTask.cs" />
+        <Compile Include="Sys\Windows\Behaviors\TextBlockEx.cs" />
+        <Compile Include="Sys\Windows\Data\BooleanToVisibilityConverterEx.cs" />
+        <Compile Include="Sys\Windows\Data\BooleanToVisibilityHiddenConverterEx.cs" />
+        <Compile Include="Sys\Windows\Data\ElementIconConverter.cs" />
+        <Compile Include="Sys\Windows\Data\ImageSourceBase64Converter.cs" />
+        <Compile Include="Sys\Windows\Data\IsNullConverter.cs" />
+        <Compile Include="Sys\Windows\Data\NegateBooleanConverter.cs" />
+        <Compile Include="Sys\Windows\Data\OneWayValueConverter.cs" />
+        <Compile Include="Sys\Windows\Data\TypeCastConverter.cs" />
+        <Compile Include="Sys\Windows\EnumBindingSourceExtension.cs" />
+        <Compile Include="Sys\Windows\Input\AsyncRelayCommand.cs" />
+        <Compile Include="Sys\Windows\Input\IAsyncCommand.cs" />
+        <Compile Include="Sys\Windows\Input\RelayCommand.cs" />
+        <Compile Include="Sys\Windows\KeyboardEx.cs" />
+        <Compile Include="Sys\Windows\Markup\GenericTypeMarkupExtension.cs" />
+        <Compile Include="Sys\Windows\Markup\GreaterThan.cs" />
+        <Compile Include="Sys\Windows\Markup\LesserThan.cs" />
+        <Compile Include="Sys\Windows\Net\Wininet.cs" />
+        <Compile Include="Sys\Windows\Search\WindowsSearch.cs" />
+        <Compile Include="Sys\Windows\Search\WindowsSearchKinds.cs" />
+        <Compile Include="Sys\Windows\Search\WindowsSearchResult.cs" />
+    </ItemGroup>
+    
+    
+    
+    <ItemGroup>
+      <Page Include="Interop\Plugins\PluginApp.xaml" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+    <PropertyGroup>
+        <LangVersion>8.0</LangVersion>
+    </PropertyGroup>
+
+
+
+</Project>
