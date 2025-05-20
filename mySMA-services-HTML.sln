@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMemoAssistant.Services.HTML", "SuperMemoAssistant.Services.HTML\SuperMemoAssistant.Services.HTML.csproj", "{827C95F6-43DC-4891-A3B0-62F68705E934}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMemoAssistant.Interop", "SuperMemoAssistant.Interop\SuperMemoAssistant.Interop.csproj", "{FF66BCE4-8A2B-43F2-8BF7-288FFDBF1D7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMemoAssistant.Services.HTML", "SuperMemoAssistant.Services.HTML\SuperMemoAssistant.Services.HTML.csproj", "{7EDA7EE2-B80E-49A8-B5B9-C9E9E63BDBC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,11 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{827C95F6-43DC-4891-A3B0-62F68705E934}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{827C95F6-43DC-4891-A3B0-62F68705E934}.Release|Any CPU.Build.0 = Release|Any CPU
-		{827C95F6-43DC-4891-A3B0-62F68705E934}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{827C95F6-43DC-4891-A3B0-62F68705E934}.Debug|Any CPU.Build.0 = Debug|x86
-		{827C95F6-43DC-4891-A3B0-62F68705E934}.Debug|x86.ActiveCfg = Debug|x86
-		{827C95F6-43DC-4891-A3B0-62F68705E934}.Debug|x86.Build.0 = Debug|x86
 		{FF66BCE4-8A2B-43F2-8BF7-288FFDBF1D7F}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{FF66BCE4-8A2B-43F2-8BF7-288FFDBF1D7F}.Debug|Any CPU.Build.0 = Debug|x86
 		{FF66BCE4-8A2B-43F2-8BF7-288FFDBF1D7F}.Debug|x86.ActiveCfg = Debug|x86
 		{FF66BCE4-8A2B-43F2-8BF7-288FFDBF1D7F}.Debug|x86.Build.0 = Debug|x86
+		{7EDA7EE2-B80E-49A8-B5B9-C9E9E63BDBC1}.Debug|x86.ActiveCfg = Debug|x86
+		{7EDA7EE2-B80E-49A8-B5B9-C9E9E63BDBC1}.Debug|x86.Build.0 = Debug|x86
 	EndGlobalSection
 EndGlobal
