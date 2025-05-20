@@ -19,6 +19,11 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
+// 
+// 
+// Created On:   2020/03/29 00:21
+// Modified On:  2020/04/07 06:13
+// Modified By:  Alexis
 
 #endregion
 
@@ -38,13 +43,6 @@ namespace SuperMemoAssistant.Interop.SuperMemo.Elements.Types
   /// <summary>Represents an element in SuperMemo. See <see cref="IElementRegistry" /></summary>
   public interface IElement
   {
-    /// <summary>
-    ///   <see cref="Id" /> does not reliably identify an element. SuperMemo re-uses ids when elements are deleted, therefore
-    ///   stored ids may reference different elements in the future.
-    /// </summary>
-    [Obsolete("Not implemented yet, returns the same as Id.")]
-    string UniqueId { get; }
-
     /// <summary>The element id, starting from 1. Element id 1 is the root element.</summary>
     int Id { get; }
 
@@ -91,10 +89,6 @@ namespace SuperMemoAssistant.Interop.SuperMemo.Elements.Types
 
     /// <summary>The children immediately underneath this element</summary>
     IEnumerable<IElement> Children { get; }
-
-    /// <summary>Returns a json representation of this element.</summary>
-    /// <returns>Json string</returns>
-    string ToJson();
 
     /// <summary>Displays this element in the <see cref="IElementWdw" /></summary>
     /// <returns>Success of operation</returns>

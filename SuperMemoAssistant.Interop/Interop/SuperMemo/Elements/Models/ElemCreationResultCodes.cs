@@ -19,6 +19,11 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
+// 
+// 
+// Created On:   2020/03/29 00:21
+// Modified On:  2020/04/07 05:05
+// Modified By:  Alexis
 
 #endregion
 
@@ -37,16 +42,13 @@ namespace SuperMemoAssistant.Interop.SuperMemo.Elements.Models
     /// <summary>The element was successfully created</summary>
     Success = 1,
 
-    /// <summary>The concept is not set.</summary>
-    WarningConceptNotSet = 1 << 2,
+    /// <summary>The concept is not set</summary>
+    WarningConceptNotSet = 4,
 
-/// <summary>Auto folder could not be created for given element. Reflects an unknown error when used without <see cref="ErrorTooManyChildren"/>.</summary>
-    ErrorDestinationBranchNotCreated = 1 << 29,
+    /// <summary>The parent branch has reached its maximum children capacity</summary>
+    ErrorTooManyChildren = 64,
 
-    /// <summary>The parent branch has reached its maximum children capacity.</summary>
-    ErrorTooManyChildren = 1 << 30,
-
-    /// <summary>An unknown error occurred, check the logs for more information.</summary>
-    ErrorUnknown = 1 << 31
+    /// <summary>An unknown error occured, check the logs for more information</summary>
+    ErrorUnknown = 128
   }
 }

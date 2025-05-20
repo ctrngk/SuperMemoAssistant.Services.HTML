@@ -28,9 +28,13 @@
 namespace SuperMemoAssistant.Extensions
 {
   using System;
+  using System.Linq;
   using System.Reflection;
+  using System.Runtime.InteropServices;
 
-  /// <summary>Extension methods relating to assembly</summary>
+  /// <summary>
+  /// Extension methods relating to assembly
+  /// </summary>
   public static class AssemblyEx
   {
     #region Methods

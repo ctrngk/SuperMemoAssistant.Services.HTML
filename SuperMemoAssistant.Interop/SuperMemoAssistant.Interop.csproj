@@ -5,7 +5,7 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{60A1324B-6F87-4B88-881B-DC91C08B70BF}</ProjectGuid>
+        <ProjectGuid>{D9D43180-9A37-4779-BF6D-9562B7130B48}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>SuperMemoAssistant.Interop</RootNamespace>
@@ -13,33 +13,16 @@
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+      <OutputPath>bin\x86\Debug\</OutputPath>
+      <PlatformTarget>x86</PlatformTarget>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Xml"/>
-        
         <Reference Include="PresentationCore" />
         <Reference Include="PresentationFramework" />
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
         <Reference Include="System.Drawing" />
         <Reference Include="System.IO.Compression" />
         <Reference Include="System.Net" />
@@ -48,27 +31,24 @@
         <Reference Include="System.Windows.Forms" />
         <Reference Include="System.Xaml" />
         <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Xml" />
         <Reference Include="UIAutomationProvider" />
         <Reference Include="WindowsBase" />
-
     </ItemGroup>
-
     <ItemGroup>
-        <PackageReference Include="Anotar.Serilog.Fody" Version="5.1.3" PrivateAssets="All" />
+        <PackageReference Include="Anotar.Serilog.Fody" Version="5.1.0" PrivateAssets="All" />
         <PackageReference Include="Extensions.System.IO" Version="0.1.0.3" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.1.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.0.0" />
         <PackageReference Include="PluginManager.Interop" Version="0.2.1.51" />
-        <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" PrivateAssets="All" />
-        <PackageReference Include="Serilog" Version="2.10.0" />
-        <PackageReference Include="Serilog.Exceptions" Version="6.1.0" />
+        <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" PrivateAssets="All" />
+        <PackageReference Include="Serilog" Version="2.9.0" />
+        <PackageReference Include="Serilog.Exceptions" Version="5.4.0" />
         <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
-        <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+        <PackageReference Include="Serilog.Sinks.Debug" Version="1.0.1" />
         <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
         <PackageReference Include="Unofficial.Microsoft.mshtml" Version="7.0.3300" />
     </ItemGroup>
-    
-    
     
     <ItemGroup>
         <Compile Include="Exceptions\SMAException.cs" />
@@ -102,16 +82,12 @@
         <Compile Include="Extensions\TaskEx.cs" />
         <Compile Include="Extensions\TextBoxEx.cs" />
         <Compile Include="Extensions\TreeViewEx.cs" />
-        <Compile Include="Extensions\TypeEx.cs" />
         <Compile Include="Extensions\WindowEx.cs" />
         <Compile Include="Interop\Plugins\ISMAPlugin.cs" />
         <Compile Include="Interop\Plugins\PluginApp.xaml.cs" />
         <Compile Include="Interop\Plugins\PluginHost.cs" />
         <Compile Include="Interop\Plugins\PluginMessage.cs" />
         <Compile Include="Interop\Plugins\SMAPluginBase.cs" />
-        <Compile Include="Interop\SMA\ISuperMemoAssistant.cs" />
-        <Compile Include="Interop\SMA\Notifications\INotificationManager.cs" />
-        <Compile Include="Interop\SMA\Notifications\ToastActivationData.cs" />
         <Compile Include="Interop\SMConst.cs" />
         <Compile Include="Interop\SuperMemo\Content\Components\Base\ComponentGroupBase.cs" />
         <Compile Include="Interop\SuperMemo\Content\Components\Base\ComponentHtmlBase.cs" />
@@ -166,7 +142,7 @@
         <Compile Include="Interop\SuperMemo\Elements\Types\ITask.cs" />
         <Compile Include="Interop\SuperMemo\Elements\Types\ITopic.cs" />
         <Compile Include="Interop\SuperMemo\ISuperMemo.cs" />
-        <Compile Include="Interop\SuperMemo\ISuperMemoEx.cs" />
+        <Compile Include="Interop\SuperMemo\ISuperMemoAssistant.cs" />
         <Compile Include="Interop\SuperMemo\Learning\LearningMode.cs" />
         <Compile Include="Interop\SuperMemo\Registry\Members\IBinary.cs" />
         <Compile Include="Interop\SuperMemo\Registry\Members\IConcept.cs" />
@@ -176,7 +152,6 @@
         <Compile Include="Interop\SuperMemo\Registry\Members\ITemplate.cs" />
         <Compile Include="Interop\SuperMemo\Registry\Members\IText.cs" />
         <Compile Include="Interop\SuperMemo\Registry\Members\IVideo.cs" />
-        <Compile Include="Interop\SuperMemo\Registry\Models\TemplateUseMode.cs" />
         <Compile Include="Interop\SuperMemo\Registry\Types\IBinaryRegistry.cs" />
         <Compile Include="Interop\SuperMemo\Registry\Types\IConceptRegistry.cs" />
         <Compile Include="Interop\SuperMemo\Registry\Types\IImageRegistry.cs" />
@@ -204,7 +179,6 @@
         <Compile Include="Services\IO\Keyboard\KeyboardHook.EventArgs.cs" />
         <Compile Include="Services\IO\Keyboard\KeyboardHotKeyService.cs" />
         <Compile Include="Services\Svc.cs" />
-        <Compile Include="Shared\Interop\Configs\SMAPreInitCfg.cs" />
         <Compile Include="Shared\Interop\SMAConst.cs" />
         <Compile Include="Shared\Interop\SMAExecutableInfo.cs" />
         <Compile Include="Shared\Interop\SMAFileSystem.cs" />
@@ -216,11 +190,6 @@
         <Compile Include="Sys\ComponentModel\INotifyPropertyChangedEx.cs" />
         <Compile Include="Sys\ComponentModel\PropertyChangedDelegate.cs" />
         <Compile Include="Sys\COM\InternetExplorer\IEComHelper.cs" />
-        <Compile Include="Sys\Converters\Json\ColorToStringJsonConverter.cs" />
-        <Compile Include="Sys\Converters\Json\IComponentGroupToComponentGroupIdJsonConverter.cs" />
-        <Compile Include="Sys\Converters\Json\IConceptToConceptIdJsonConverter.cs" />
-        <Compile Include="Sys\Converters\Json\IElementToElementIdJsonConverter.cs" />
-        <Compile Include="Sys\Converters\Json\ITemplateToTemplateIdJsonConverter.cs" />
         <Compile Include="Sys\Converters\Json\ObjectToStringJsonConverter.cs" />
         <Compile Include="Sys\Drawing\ImageWrapper.cs" />
         <Compile Include="Sys\EmptyDisposable.cs" />
@@ -267,9 +236,6 @@
         <Compile Include="Sys\Windows\Search\WindowsSearchKinds.cs" />
         <Compile Include="Sys\Windows\Search\WindowsSearchResult.cs" />
     </ItemGroup>
-    
-    
-    
     <ItemGroup>
       <Page Include="Interop\Plugins\PluginApp.xaml" />
     </ItemGroup>
@@ -285,7 +251,5 @@
     <PropertyGroup>
         <LangVersion>8.0</LangVersion>
     </PropertyGroup>
-
-
 
 </Project>

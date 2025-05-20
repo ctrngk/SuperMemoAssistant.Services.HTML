@@ -43,7 +43,6 @@ using SuperMemoAssistant.Services.IO.Keyboard;
 
 namespace SuperMemoAssistant.Services
 {
-  using Interop.SMA;
   using IO.Diagnostics;
 
   /// <summary>
