@@ -13,3 +13,5 @@ Simply hit Build to generate SuperMemoAssistant.Services.HTML.dll
 - Recreate and tidy up the SuperMemoAssistant.Services.HTML.csproj to use consistent and dependable package versions from Nuget
 - Set configuration to Debug/x86 only
 - Update both SuperMemoAssistant.Interop.csproj and SuperMemoAssistant.Services.HTML.csproj to use modern SDK-style, instead of the older non-SDK-style MSBuild format. SDK-style WPF projects automatically include all .xaml files, even if they are not explicitly listed in the .csproj. i.e. Implicit *.xaml, *.cs, etc. include
+- Lock SuperMemoAssistant.Services.HTML.dll to version 2.0.5.*, where git commit is 10/25/2020
+
