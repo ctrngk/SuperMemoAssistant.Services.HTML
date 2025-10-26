@@ -1,0 +1,13 @@
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\bin\Debug\net472\PluginHost.exe.config
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\bin\Debug\net472\PluginHost.exe
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginManager.PluginHost.csproj.AssemblyReference.cache
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\App.baml
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\App.g.cs
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginHost_MarkupCompile.cache
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginHost.g.resources
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginManager.PluginHost.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginManager.PluginHost.AssemblyInfoInputs.cache
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginManager.PluginHost.AssemblyInfo.cs
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginManager.PluginHost.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginManager.PluginHost.csproj.Fody.CopyLocal.cache
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.PluginHost\obj\Debug\net472\PluginHost.exe

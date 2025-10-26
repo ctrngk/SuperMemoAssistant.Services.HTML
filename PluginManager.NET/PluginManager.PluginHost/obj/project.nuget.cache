@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "eXseiDSxf7s=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.PluginHost\\PluginManager.PluginHost.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\commandlineparser\\2.7.82\\commandlineparser.2.7.82.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\costura.fody\\4.1.0\\costura.fody.4.1.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\fody\\6.1.1\\fody.6.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

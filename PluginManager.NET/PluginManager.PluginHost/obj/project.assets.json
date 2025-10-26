@@ -1,0 +1,234 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {
+      "CommandLineParser/2.7.82": {
+        "type": "package",
+        "compile": {
+          "lib/net461/CommandLine.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net461/CommandLine.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Costura.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.0.0"
+        },
+        "compile": {
+          "lib/net40/Costura.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net40/Costura.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/Costura.Fody.props": {}
+        }
+      },
+      "Fody/6.1.1": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win7-x86": {
+      "CommandLineParser/2.7.82": {
+        "type": "package",
+        "compile": {
+          "lib/net461/CommandLine.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net461/CommandLine.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Costura.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.0.0"
+        },
+        "compile": {
+          "lib/net40/Costura.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net40/Costura.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/Costura.Fody.props": {}
+        }
+      },
+      "Fody/6.1.1": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CommandLineParser/2.7.82": {
+      "sha512": "JnjxBu4++EDnYtDzHskiPrPJ9hAna8amu8qlQx8J+2oZnPddDnkR/0FFtQMDz0Cs0YF2lbyW3OmYfRmIrLNY0A==",
+      "type": "package",
+      "path": "commandlineparser/2.7.82",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CommandLine20.png",
+        "License.md",
+        "README.md",
+        "commandlineparser.2.7.82.nupkg.sha512",
+        "commandlineparser.nuspec",
+        "lib/net40/CommandLine.dll",
+        "lib/net40/CommandLine.xml",
+        "lib/net45/CommandLine.dll",
+        "lib/net45/CommandLine.xml",
+        "lib/net461/CommandLine.dll",
+        "lib/net461/CommandLine.xml",
+        "lib/netstandard2.0/CommandLine.dll",
+        "lib/netstandard2.0/CommandLine.xml"
+      ]
+    },
+    "Costura.Fody/4.1.0": {
+      "sha512": "MkW5aqhqNvuP6MiaaD5Yx8efXv+5ucsumRx+Nsn5b+PA4RnaxJLtXhGkm1N+Hi7sjkSlL8kl1klSS/7v2DxZHw==",
+      "type": "package",
+      "path": "costura.fody/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Costura.Fody.props",
+        "costura.fody.4.1.0.nupkg.sha512",
+        "costura.fody.nuspec",
+        "lib/net40/Costura.dll",
+        "lib/net40/Costura.xml",
+        "weaver/Costura.Fody.dll",
+        "weaver/Costura.Fody.xcf"
+      ]
+    },
+    "Fody/6.1.1": {
+      "sha512": "i7vuMDp1LmatLaAXqfOrJt6U0lVSxAQFpjYcWmX+MEM8t6r4b8Z8NtwwcS3XbtQCDRey6QIAe3ujNoOTn7DQ1A==",
+      "type": "package",
+      "path": "fody/6.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "build/Fody.targets",
+        "fody.6.1.1.nupkg.sha512",
+        "fody.nuspec",
+        "netclassictask/Fody.dll",
+        "netclassictask/FodyCommon.dll",
+        "netclassictask/FodyHelpers.dll",
+        "netclassictask/FodyIsolated.dll",
+        "netclassictask/Mono.Cecil.Pdb.dll",
+        "netclassictask/Mono.Cecil.Pdb.pdb",
+        "netclassictask/Mono.Cecil.Rocks.dll",
+        "netclassictask/Mono.Cecil.Rocks.pdb",
+        "netclassictask/Mono.Cecil.dll",
+        "netclassictask/Mono.Cecil.pdb",
+        "netstandardtask/Fody.dll",
+        "netstandardtask/FodyCommon.dll",
+        "netstandardtask/FodyHelpers.dll",
+        "netstandardtask/FodyIsolated.dll",
+        "netstandardtask/Mono.Cecil.Pdb.dll",
+        "netstandardtask/Mono.Cecil.Pdb.pdb",
+        "netstandardtask/Mono.Cecil.Rocks.dll",
+        "netstandardtask/Mono.Cecil.Rocks.pdb",
+        "netstandardtask/Mono.Cecil.dll",
+        "netstandardtask/Mono.Cecil.pdb"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": [
+      "CommandLineParser >= 2.7.82",
+      "Costura.Fody >= 4.1.0",
+      "Fody >= 6.1.1"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.PluginHost\\PluginManager.PluginHost.csproj",
+      "projectName": "PluginHost",
+      "projectPath": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.PluginHost\\PluginManager.PluginHost.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.PluginHost\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net472": {
+        "targetAlias": "net472",
+        "dependencies": {
+          "CommandLineParser": {
+            "target": "Package",
+            "version": "[2.7.82, )"
+          },
+          "Costura.Fody": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[4.1.0, )"
+          },
+          "Fody": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.1.1, )"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win7-x86": {
+        "#import": []
+      }
+    }
+  }
+}

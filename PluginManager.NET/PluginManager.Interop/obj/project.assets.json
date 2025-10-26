@@ -1,0 +1,118 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {
+      "CommandLineParser/2.7.82": {
+        "type": "package",
+        "compile": {
+          "lib/net461/CommandLine.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net461/CommandLine.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "PluginHost/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.7.2",
+        "dependencies": {
+          "CommandLineParser": "2.7.82"
+        },
+        "compile": {
+          "bin/placeholder/PluginHost.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PluginHost.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CommandLineParser/2.7.82": {
+      "sha512": "JnjxBu4++EDnYtDzHskiPrPJ9hAna8amu8qlQx8J+2oZnPddDnkR/0FFtQMDz0Cs0YF2lbyW3OmYfRmIrLNY0A==",
+      "type": "package",
+      "path": "commandlineparser/2.7.82",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CommandLine20.png",
+        "License.md",
+        "README.md",
+        "commandlineparser.2.7.82.nupkg.sha512",
+        "commandlineparser.nuspec",
+        "lib/net40/CommandLine.dll",
+        "lib/net40/CommandLine.xml",
+        "lib/net45/CommandLine.dll",
+        "lib/net45/CommandLine.xml",
+        "lib/net461/CommandLine.dll",
+        "lib/net461/CommandLine.xml",
+        "lib/netstandard2.0/CommandLine.dll",
+        "lib/netstandard2.0/CommandLine.xml"
+      ]
+    },
+    "PluginHost/1.0.0": {
+      "type": "project",
+      "path": "../PluginManager.PluginHost/PluginManager.PluginHost.csproj",
+      "msbuildProject": "../PluginManager.PluginHost/PluginManager.PluginHost.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": [
+      "PluginHost >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.Interop\\PluginManager.Interop.csproj",
+      "projectName": "PluginManager.Interop",
+      "projectPath": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.Interop\\PluginManager.Interop.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.Interop\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "projectReferences": {
+            "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.PluginHost\\PluginManager.PluginHost.csproj": {
+              "projectPath": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.PluginHost\\PluginManager.PluginHost.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net472": {
+        "targetAlias": "net472",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

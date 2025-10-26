@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PluginManager.Interop</name>
+    </assembly>
+    <members>
+        <member name="T:PluginManager.Interop.Contracts.IPluginBase">
+            <summary>
+            Contract interface that plugins publish as a remote service
+            </summary>
+        </member>
+        <member name="P:PluginManager.Interop.Contracts.IPluginBase.Name">
+            <summary>
+            The friendly name of the plugin (as opposed to its package name)
+            </summary>
+        </member>
+        <member name="P:PluginManager.Interop.Contracts.IPluginBase.AssemblyName">
+            <summary>
+            The plugin's assembly name
+            </summary>
+        </member>
+        <member name="P:PluginManager.Interop.Contracts.IPluginBase.AssemblyVersion">
+            <summary>
+            The plugin's version (using the assembly's version is recommended)
+            </summary>
+        </member>
+        <member name="P:PluginManager.Interop.Contracts.IPluginBase.ChannelName">
+            <summary>
+            The Channel name where the plugin publishes its remote service
+            </summary>
+        </member>
+        <member name="M:PluginManager.Interop.Contracts.IPluginBase.OnInjected">
+            <summary>
+            Called after PluginHost.exe has instantiated an instance of <see cref="T:PluginManager.Interop.Contracts.IPluginBase"/> and successfully injected its properties (see <see cref="T:PluginManager.Interop.Plugins.PluginBase`3" />).
+            </summary>
+        </member>
+        <member name="M:PluginManager.Interop.Contracts.IPluginBase.OnServicePublished(System.String)">
+            <summary>
+            Called when a service is published by another plugin
+            </summary>
+            <param name="interfaceTypeName">The name of the type that is published</param>
+        </member>
+        <member name="M:PluginManager.Interop.Contracts.IPluginBase.OnServiceRevoked(System.String)">
+            <summary>
+            Called when a service is revoked by another plugin
+            </summary>
+            <param name="interfaceTypeName">The name of the type that got revoked</param>
+        </member>
+        <member name="T:PluginManager.Interop.Contracts.IPluginManager`1">
+            <summary>
+            The plugin manager interface to publish as a remote service. This is used by PluginHost.exe to register its guest plugin with the Plugin Manager.
+            </summary>
+            <typeparam name="ICore">The type of the final service that needs to be published</typeparam>
+        </member>
+        <member name="M:PluginManager.Interop.Contracts.IPluginManager`1.ConnectPlugin(System.String,System.Guid)">
+            <summary>Registers a newly started plugin process with the Plugin Manager</summary>
+            <param name="channel"></param>
+            <param name="sessionGuid"></param>
+            <returns>An instance of <see cref="!:ICore" /> if successful, <see langword="null" /> otherwise</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.Interop.Contracts.IPluginManager`1.GetService(System.String)">
+            <summary>
+              Attempts to retrieve an Ipc Server's channel name for given remote interface. The
+              interface must be registered with <see cref="M:PluginManager.Interop.Contracts.IPluginManager`1.RegisterService(System.Guid,System.String,System.String)" /> beforehand.
+            </summary>
+            <param name="remoteInterfaceType"></param>
+            <returns>The channel name if successful, <see langword="null" /> otherwise.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.Interop.Contracts.IPluginManager`1.RegisterService(System.Guid,System.String,System.String)">
+            <summary>
+              Registers an Ipc Server's channel name for interface of type
+              <paramref name="remoteServiceType" />.
+            </summary>
+            <param name="sessionGuid"></param>
+            <param name="remoteServiceType"></param>
+            <param name="channelName">
+              Channel name where clients can acquire a proxy for
+              <paramref name="remoteServiceType" />
+            </param>
+            <returns>
+              A disposable object, which unregisters the channel when disposed, or
+              <see langword="null" />.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException">No plugin found for <paramref name="sessionGuid"/></exception>
+        </member>
+        <member name="T:PluginManager.Interop.PluginHost.PluginAssemblyResolver">
+            <summary>
+              Implement the <see cref="E:System.AppDomain.AssemblyResolve" /> event to load the plugin's and
+              its dependencies' assemblies. See <see cref="M:PluginManager.Interop.PluginHost.PluginAssemblyResolver.#ctor(System.String,System.String)" />
+            </summary>
+        </member>
+        <member name="M:PluginManager.Interop.PluginHost.PluginAssemblyResolver.#ctor(System.String,System.String)">
+            <summary>
+              Implement the <see cref="E:System.AppDomain.AssemblyResolve" /> event to load the plugin's and
+              its dependencies' assemblies as provided by
+              <paramref name="pluginAndDependenciesAssembliesPath" />
+            </summary>
+            <param name="packageRootFolder">
+              The root folder underneath which all packages and their
+              assemblies are located
+            </param>
+            <param name="pluginAndDependenciesAssembliesPath">
+              The file path to plugin's and its
+              dependencies' assemblies. Paths should be relative to <paramref name="packageRootFolder" />
+            </param>
+        </member>
+        <member name="P:PluginManager.Interop.PluginHost.PluginAssemblyResolver.AssemblyNamePathMap">
+            <summary>
+            A map between assembly name and the assembly file path
+            </summary>
+        </member>
+        <member name="T:PluginManager.Interop.PluginHost.PluginHostBase`1">
+            <summary>
+            The plugin host is initialized the PluginHost.exe in its own AppDomain. This is equivalent to the Startup() function for plugins
+            </summary>
+        </member>
+        <member name="M:PluginManager.Interop.PluginHost.PluginHostBase`1.#ctor(System.String,System.Guid,System.String,System.Diagnostics.Process,System.Boolean)">
+            <summary>
+            Instantiates a new plugin
+            </summary>
+            <param name="pluginEntryAssemblyFilePath"></param>
+            <param name="sessionGuid"></param>
+            <param name="mgrChannelName"></param>
+            <param name="mgrProcess"></param>
+            <param name="isDev"></param>
+        </member>
+        <member name="M:PluginManager.Interop.PluginHost.PluginHostBase`1.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Interop.Plugins.PluginBase`3.AssemblyName">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Interop.Plugins.PluginBase`3.AssemblyVersion">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Interop.Plugins.PluginBase`3.ChannelName">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.InitializeLifetimeService">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.OnInjected">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.OnServicePublished(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.OnServiceRevoked(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.GetService``1">
+            <summary>Requests the Interop service from another Plugin.</summary>
+            <typeparam name="IService">Interface for desired remote service.</typeparam>
+            <returns>Service or <see langword="null" /></returns>
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.PublishService``2(``1,System.String)">
+            <summary>Publishes a service for other Plugins to consume.</summary>
+            <typeparam name="IService">The interop interface for the service.</typeparam>
+            <typeparam name="TService">
+              A type which <paramref name="service" /> can be cast to and which
+              extends <see cref="T:PluginManager.Interop.Sys.PerpetualMarshalByRefObject" />. Typically the type implementing the
+              service.
+            </typeparam>
+            <param name="service">An instance of the service.</param>
+            <param name="channelName">
+              Optional user-defined channel name. If <see langword="null" />, a
+              random channel name will be generated. Useful when the interface is intended to be shared
+              with other applications.
+            </param>
+            <remarks>
+              Only a single instance of the same interface <typeparamref name="IService" /> can be
+              published at once.
+            </remarks>
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.RevokeService``1">
+            <summary>
+            Revokes a service previously published through <see cref="M:PluginManager.Interop.Plugins.PluginBase`3.PublishService``2(``1,System.String)"/>.
+            </summary>
+            <typeparam name="IService">The interop interface for the service.</typeparam>
+            <returns>Whether the operation was successful</returns>
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.RevokeService(System.Type)">
+            <summary>
+            Revokes a service previously published through <see cref="M:PluginManager.Interop.Plugins.PluginBase`3.PublishService``2(``1,System.String)"/>.
+            </summary>
+            <param name="svcType">Instance of the service published.</param>
+            <returns>Whether the operation was successful</returns>
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.RevokeServices">
+            <summary>
+            Revokes all services previously published through <see cref="M:PluginManager.Interop.Plugins.PluginBase`3.PublishService``2(``1,System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:PluginManager.Interop.Plugins.PluginBase`3.OnPluginInitialized">
+            <summary>
+              Called when the Plugin has been instantiated and the remote service is available.
+              Override to run custom initialization code.
+            </summary>
+        </member>
+        <member name="P:PluginManager.Interop.Plugins.PluginBase`3.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Interop.Sys.PerpetualMarshalByRefObject.InitializeLifetimeService">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

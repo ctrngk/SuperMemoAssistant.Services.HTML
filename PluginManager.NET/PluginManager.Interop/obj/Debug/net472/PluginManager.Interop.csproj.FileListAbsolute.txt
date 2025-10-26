@@ -1,0 +1,15 @@
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\bin\Debug\net472\PluginManager.Interop.dll
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\bin\Debug\net472\PluginManager.Interop.pdb
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\bin\Debug\net472\PluginManager.Interop.xml
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\bin\Debug\net472\CommandLine.dll
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\bin\Debug\net472\PluginHost.exe
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\bin\Debug\net472\PluginHost.exe.config
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginManager.Interop.csproj.AssemblyReference.cache
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginManager.Interop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginManager.Interop.AssemblyInfoInputs.cache
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginManager.Interop.AssemblyInfo.cs
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginManager.Interop.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginMa.4212EE9E.Up2Date
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginManager.Interop.dll
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginManager.Interop.xml
+C:\Users\Administrator\RiderProjects\SuperMemoAssistant.Services.HTML\PluginManager.NET\PluginManager.Interop\obj\Debug\net472\PluginManager.Interop.pdb

@@ -1,0 +1,134 @@
+{
+  "version": 2,
+  "dgSpecHash": "yVEjZoYwQa4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Administrator\\RiderProjects\\SuperMemoAssistant.Services.HTML\\PluginManager.NET\\PluginManager.Core\\PluginManager.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\anotar.custom.fody\\5.1.0\\anotar.custom.fody.5.1.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\commandlineparser\\2.7.82\\commandlineparser.2.7.82.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\extensions.system.io\\0.1.0.3\\extensions.system.io.0.1.0.3.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\fody\\6.1.1\\fody.6.1.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.web.xdt\\3.0.0\\microsoft.web.xdt.3.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.asyncex.context\\5.0.0\\nito.asyncex.context.5.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.asyncex.coordination\\5.0.0\\nito.asyncex.coordination.5.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.asyncex.interop.waithandles\\5.0.0\\nito.asyncex.interop.waithandles.5.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.asyncex.oop\\5.0.0\\nito.asyncex.oop.5.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.asyncex.tasks\\5.0.0\\nito.asyncex.tasks.5.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.cancellation\\1.0.5\\nito.cancellation.1.0.5.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.collections.deque\\1.0.4\\nito.collections.deque.1.0.4.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nito.disposables\\2.0.1\\nito.disposables.2.0.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.commands\\5.4.0\\nuget.commands.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.common\\5.4.0\\nuget.common.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.configuration\\5.4.0\\nuget.configuration.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.credentials\\5.4.0\\nuget.credentials.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.dependencyresolver.core\\5.4.0\\nuget.dependencyresolver.core.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.frameworks\\5.4.0\\nuget.frameworks.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.librarymodel\\5.4.0\\nuget.librarymodel.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.packagemanagement\\5.4.0\\nuget.packagemanagement.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.packaging\\5.4.0\\nuget.packaging.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.packaging.core\\5.4.0\\nuget.packaging.core.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.projectmodel\\5.4.0\\nuget.projectmodel.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.protocol\\5.4.0\\nuget.protocol.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.resolver\\5.4.0\\nuget.resolver.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\nuget.versioning\\5.4.0\\nuget.versioning.5.4.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\propertychanged.fody\\3.2.8\\propertychanged.fody.3.2.8.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.collections.immutable\\1.7.0\\system.collections.immutable.1.7.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.0\\system.runtime.compilerservices.unsafe.4.7.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Newtonsoft.Json' 12.0.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Commands' 5.4.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-3885-8gqc-3wpf",
+      "libraryId": "NuGet.Commands",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Commands' 5.4.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-6qmf-mmc7-6c2p",
+      "libraryId": "NuGet.Commands",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Commands' 5.4.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-g3q9-xf95-8hp5",
+      "libraryId": "NuGet.Commands",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Common' 5.4.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-6qmf-mmc7-6c2p",
+      "libraryId": "NuGet.Common",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.PackageManagement' 5.4.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-6qmf-mmc7-6c2p",
+      "libraryId": "NuGet.PackageManagement",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    },
+    {
+      "code": "NU1904",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Packaging' 5.4.0 has a known critical severity vulnerability, https://github.com/advisories/GHSA-68w7-72jg-6qpp",
+      "libraryId": "NuGet.Packaging",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Protocol' 5.4.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-6qmf-mmc7-6c2p",
+      "libraryId": "NuGet.Protocol",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Protocol' 5.4.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-g3q9-xf95-8hp5",
+      "libraryId": "NuGet.Protocol",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    }
+  ]
+}

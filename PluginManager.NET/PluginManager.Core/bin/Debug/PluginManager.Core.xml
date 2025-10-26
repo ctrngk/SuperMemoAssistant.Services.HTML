@@ -1,0 +1,1746 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PluginManager.Core</name>
+    </assembly>
+    <members>
+        <member name="T:PluginManager.Contracts.IPluginInstance`3">
+            <summary>
+              Represents an instance of a plugin. Its process information will be updated if it is
+              running.
+            </summary>
+            <typeparam name="TParent">
+              The latest child in the inheritance hierarchy of
+              <see cref="T:PluginManager.Contracts.IPluginInstance`3" />
+            </typeparam>
+            <typeparam name="TMeta">The container for the metadata associated with plugin</typeparam>
+            <typeparam name="IPlugin">The plugin interface</typeparam>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.Package">
+            <summary>Information about the installed NuGet package</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.Status">
+            <summary>Current process status of the plugin (e.g. starting, connected, stopped, etc.)</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.Plugin">
+            <summary>An instance of the plugin's remote service. Set when the plugin is running</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.Guid">
+            <summary>The sessions GUID. Set when the plugin is running</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.Process">
+            <summary>The process of the plugin. Set when the plugin is running.</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.Lock">
+            <summary>
+              Synchronizes operations being done on this plugin (e.g. avoids starting the plugin
+              several times)
+            </summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.ConnectedEvent">
+            <summary>
+              This event is triggered when a newly started plugin has connected to the Plugin Manager.
+              Used in
+              <see
+                cref="!:PluginManagerBase&lt;TParent, TPluginInstance, TMeta, ICustomPluginManager, ICore, IPlugin&gt;.StartPlugin(TPluginInstance)" />
+            </summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.InterfaceChannelMap">
+            <summary>Services published by the plugin. Maps the interface type to the remote channel name</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.IsDevelopment">
+            <summary>Whether this plugin is a development plugin</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.Denomination">
+            <summary>e.g. "Plugin", "Development plugin". Used for logging</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginInstance`3.IsEnabled">
+            <summary>Whether this plugin is allowed to be started or not</summary>
+        </member>
+        <member name="M:PluginManager.Contracts.IPluginInstance`3.OnStarting">
+            <summary>
+              Called when the plugin is being started, see
+              <see
+                cref="!:PluginManagerBase&lt;TParent, TPluginInstance, TMeta, ICustomPluginManager, ICore, IPlugin&gt;.StartPlugin(TPluginInstance)" />
+            </summary>
+            <returns>A new session GUID for this plugin's process</returns>
+        </member>
+        <member name="M:PluginManager.Contracts.IPluginInstance`3.OnConnected(`2)">
+            <summary>
+              Called when the plugin has connected, see
+              <see
+                cref="!:PluginManagerBase&lt;TParent, TPluginInstance, TMeta, ICustomPluginManager, ICore, IPlugin&gt;.StartPlugin(TPluginInstance)" />
+            </summary>
+            <param name="plugin">The connected plugin's remote service</param>
+        </member>
+        <member name="M:PluginManager.Contracts.IPluginInstance`3.OnStopping">
+            <summary>
+              Called when the plugin is stopping, see
+              <see
+                cref="!:PluginManagerBase&lt;TParent, TPluginInstance, TMeta, ICustomPluginManager, ICore, IPlugin&gt;.StartPlugin(TPluginInstance)" />
+            </summary>
+        </member>
+        <member name="M:PluginManager.Contracts.IPluginInstance`3.OnStopped(System.Boolean)">
+            <summary>
+              Called when the plugin has stopped, see
+              <see
+                cref="!:PluginManagerBase&lt;TParent, TPluginInstance, TMeta, ICustomPluginManager, ICore, IPlugin&gt;.StartPlugin(TPluginInstance)" />
+            </summary>
+            <param name="crashed">Whether the plugin stopped with an error Exit Code</param>
+        </member>
+        <member name="T:PluginManager.Contracts.IPluginLocations">
+            <summary>
+              A contract interface which returns the paths to various key folders and files used by
+              the PluginManager. This should be implemented by project users.
+            </summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginLocations.PluginDir">
+            <summary>
+              The root folder of all Plugin files. Other properties in this interface should be
+              children of this directory
+            </summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginLocations.PluginHomeDir">
+            <summary>
+              The home directory of each plugin, similar to the ~ for users. This is the personal
+              filespace of plugins
+            </summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginLocations.PluginPackageDir">
+            <summary>The directory which holds all the NuGet packages</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginLocations.PluginDevelopmentDir">
+            <summary>The directory which contains development plugins</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginLocations.PluginHostExeFile">
+            <summary>Path to the PluginHost.exe file</summary>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginLocations.PluginConfigFile">
+            <summary>Path to the plugin .json configuration file</summary>
+        </member>
+        <member name="T:PluginManager.Contracts.IPluginRepositoryService`1">
+            <summary>
+            Contract interface used by the Plugin Manager to fetch available plugin from your API endpoint.
+            </summary>
+            <typeparam name="TMeta">The Metadata type which define data associated with each plugin</typeparam>
+        </member>
+        <member name="P:PluginManager.Contracts.IPluginRepositoryService`1.UpdateEnabled">
+            <summary>Whether plugin updates are enabled</summary>
+        </member>
+        <member name="M:PluginManager.Contracts.IPluginRepositoryService`1.FetchPluginMetadataList(System.Threading.CancellationToken)">
+            <summary>Fetch the metadata of all plugin indexed by the API</summary>
+            <param name="cancellationToken"></param>
+            <returns>Plugin metadatas or <see langword="null" /></returns>
+        </member>
+        <member name="M:PluginManager.Contracts.IPluginRepositoryService`1.SearchPlugins(System.String,System.Boolean,PluginManager.PackageManager.PluginPackageManager{`0},System.Threading.CancellationToken)">
+            <summary>
+              Search available NuGet repositories for all packages matching
+              <paramref name="searchTerm" /> and <paramref name="enablePreRelease" />. Only NuGet packages
+              that are also indexed by the API should be included.
+            </summary>
+            <param name="searchTerm">Part or totality of the package name to look for</param>
+            <param name="enablePreRelease">Whether to include packages that are marked as pre-release</param>
+            <param name="pm">The package manager</param>
+            <param name="cancellationToken"></param>
+            <returns>All available packages or <see langword="null" /></returns>
+        </member>
+        <member name="M:PluginManager.Extensions.IEnumerableEx.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+              Returns all distinct elements of the given source, where "distinctness" is determined
+              via a projection and the default equality comparer for the projected type.
+            </summary>
+            <remarks>
+              This operator uses deferred execution and streams the results, although a set of
+              already-seen keys is retained. If a key is seen multiple times, only the first element with
+              that key is returned.
+            </remarks>
+            <typeparam name="TSource">Type of the source sequence</typeparam>
+            <typeparam name="TKey">Type of the projected element</typeparam>
+            <param name="source">Source sequence</param>
+            <param name="keySelector">Projection for determining "distinctness"</param>
+            <returns>
+              A sequence consisting of distinct elements from the source sequence, comparing them
+              by the specified key projection.
+            </returns>
+        </member>
+        <member name="M:PluginManager.Extensions.IEnumerableEx.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+              Returns all distinct elements of the given source, where "distinctness" is determined
+              via a projection and the specified comparer for the projected type.
+            </summary>
+            <remarks>
+              This operator uses deferred execution and streams the results, although a set of
+              already-seen keys is retained. If a key is seen multiple times, only the first element with
+              that key is returned.
+            </remarks>
+            <typeparam name="TSource">Type of the source sequence</typeparam>
+            <typeparam name="TKey">Type of the projected element</typeparam>
+            <param name="source">Source sequence</param>
+            <param name="keySelector">Projection for determining "distinctness"</param>
+            <param name="comparer">
+              The equality comparer to use to determine whether or not keys are
+              equal. If null, the default equality comparer for <c>TSource</c> is used.
+            </param>
+            <returns>
+              A sequence consisting of distinct elements from the source sequence, comparing them
+              by the specified key projection.
+            </returns>
+        </member>
+        <member name="M:PluginManager.Extensions.NuGetPackageEx.GetPackageDirectoryPath(PluginManager.PackageManager.NuGet.NuGetPackage,NuGet.ProjectManagement.FolderNuGetProject)">
+            <summary>Returns the package directory path if it exists, null otherwise</summary>
+        </member>
+        <member name="M:PluginManager.Extensions.NuGetPackageEx.GetPackageFilePath(PluginManager.PackageManager.NuGet.NuGetPackage,NuGet.ProjectManagement.FolderNuGetProject)">
+            <summary>Returns the .nupkg file path if it exists, null otherwise</summary>
+        </member>
+        <member name="M:PluginManager.Extensions.NuGetPackageEx.PackageExists(PluginManager.PackageManager.NuGet.NuGetPackage,NuGet.PackageManagement.NuGetPackageManager)">
+            <summary>Verifies that the package exist locally</summary>
+        </member>
+        <member name="M:PluginManager.Extensions.NuGetPackageEx.GetReferencedAssembliesFilePaths(PluginManager.PackageManager.NuGet.NuGetPackage,NuGet.ProjectManagement.FolderNuGetProject,NuGet.Frameworks.NuGetFramework)">
+            <summary>Returns the referenced .dll/.exe file paths</summary>
+        </member>
+        <member name="M:PluginManager.Extensions.NuGetPackageEx.SelectFrameworkMostCompatibleGroup(NuGet.Frameworks.NuGetFramework,System.Collections.Generic.List{NuGet.Packaging.FrameworkSpecificGroup})">
+            The following method is originally from the internal MSBuildNuGetProjectSystemUtility class
+        </member>
+        <member name="M:PluginManager.Extensions.NuGetPackageEx.IsValidFrameworkGroup(NuGet.Packaging.FrameworkSpecificGroup)">
+            The following method is originally from the internal MSBuildNuGetProjectSystemUtility class
+        </member>
+        <member name="T:PluginManager.Logger.ILogAdapter">
+            <summary>
+              Contract interface that is used to forward the PluginManager's library logs to the
+              user's PluginManager implementation.
+            </summary>
+        </member>
+        <member name="T:PluginManager.Logger.LoggerFactory">
+            <summary>
+            https://github.com/Fody/Anotar#custom-logging
+            </summary>
+        </member>
+        <member name="T:PluginManager.Logger.PluginManagerLogger">
+            <summary>
+              The global logger, used by Anotar.Custom (<see cref="T:PluginManager.Logger.LoggerFactory" />) and NuGet's
+              logger
+            </summary>
+        </member>
+        <member name="T:PluginManager.Models.PluginInstanceBase`3">
+            <inheritdoc cref="T:PluginManager.Contracts.IPluginInstance`3" />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.#ctor(PluginManager.PackageManager.Models.LocalPluginPackage{`1})">
+            <summary>Initialize this instance</summary>
+            <param name="package">The local NuGet package corresponding to this Plugin Instance</param>
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.Metadata">
+            <summary>The metadata associated with this plugin</summary>
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.Package">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.Status">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.Plugin">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.Guid">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.Process">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.Lock">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.ConnectedEvent">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.InterfaceChannelMap">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.IsDevelopment">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.Denomination">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.Equals(PluginManager.Models.PluginInstanceBase{`0,`1,`2})">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.OnStarting">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.OnConnected(`2)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.OnStopping">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.OnStopped(System.Boolean)">
+            <param name="crashed"></param>
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.op_Equality(PluginManager.Models.PluginInstanceBase{`0,`1,`2},PluginManager.Models.PluginInstanceBase{`0,`1,`2})">
+            <summary>Equality operator</summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.op_Inequality(PluginManager.Models.PluginInstanceBase{`0,`1,`2},PluginManager.Models.PluginInstanceBase{`0,`1,`2})">
+            <summary>Inequality operator</summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.OnPropertyChanged(System.String)">
+            <summary>
+              Raises the <see cref="E:PluginManager.Models.PluginInstanceBase`3.PropertyChanged" /> event for Property
+              <paramref name="propName" />
+            </summary>
+            <param name="propName"></param>
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.OnStatusChanged">
+            <summary>
+              Called by Fody.PropertyChanged when <see cref="P:PluginManager.Models.PluginInstanceBase`3.Status" /> changes. Override to
+              implement custom behaviour. Calling base method isn't necessary.
+            </summary>
+        </member>
+        <member name="M:PluginManager.Models.PluginInstanceBase`3.Equals(`0)">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.Models.PluginInstanceBase`3.IsEnabled">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.Models.PluginInstanceBase`3.PropertyChanged">
+            <inheritdoc />
+        </member>
+        <member name="T:PluginManager.Models.PluginStartFailure">
+            <summary>
+            Defines the reason why a plugin couldn't be started
+            </summary>
+        </member>
+        <member name="T:PluginManager.Models.PluginStatus">
+            <summary>The current status of the plugin process</summary>
+        </member>
+        <member name="F:PluginManager.Models.PluginStatus.Starting">
+            <summary>
+              Set immediately after checking a plugin passes the pre-requisites to be started, and
+              before its process is created.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Models.PluginStatus.Connected">
+            <summary>
+              Set after a plugin process has been started, and connection has been made with the
+              Plugin Manager instance.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Models.PluginStatus.Stopping">
+            <summary>
+              Set immediately after checking a plugin passes the pre-requisites to be stopped, and
+              before sending it the stop signal.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Models.PluginStatus.Stopped">
+            <summary>Set when a plugin wasn't started, or after a plugin has been stopped or killed.</summary>
+        </member>
+        <member name="T:PluginManager.PackageManager.Models.LocalDevPluginPackage`1">
+            <summary>
+              Represents a local development plugin. Unlike
+              <see cref="T:PluginManager.PackageManager.Models.LocalPluginPackage`1" /> this plugin isn't in the form of a NuGet package
+              and all its files are located under a single folder
+            </summary>
+            <typeparam name="TMeta">The metadata to associate with each plugin</typeparam>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.LocalDevPluginPackage`1.HasPendingUpdates">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalDevPluginPackage`1.AddDependency(NuGet.Packaging.Core.PackageIdentity)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalDevPluginPackage`1.RemoveDependency(NuGet.Packaging.Core.PackageIdentity)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalDevPluginPackage`1.GetPluginAndDependenciesAssembliesFilePaths(NuGet.ProjectManagement.FolderNuGetProject,NuGet.Frameworks.NuGetFramework)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalDevPluginPackage`1.GetPluginAndDependenciesContentDirectoryPaths(NuGet.ProjectManagement.FolderNuGetProject,NuGet.Frameworks.NuGetFramework)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalDevPluginPackage`1.PackageAndDependenciesExist(NuGet.PackageManagement.NuGetPackageManager)">
+            <inheritdoc />
+        </member>
+        <member name="T:PluginManager.PackageManager.Models.LocalPluginPackage`1">
+            <summary>
+              Represents a locally installed plugin package, as opposed to
+              <see cref="T:PluginManager.PackageManager.Models.OnlinePluginPackage`1" /> and the plugin's NuGet dependency packages.
+            </summary>
+            <typeparam name="TMeta">The metadata to associate with each plugin</typeparam>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalPluginPackage`1.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalPluginPackage`1.#ctor(NuGet.Packaging.Core.PackageIdentity,Extensions.System.IO.DirectoryPath,`0)">
+            <summary></summary>
+            <param name="identity"></param>
+            <param name="rootHomeDir"></param>
+            <param name="metadata"></param>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.LocalPluginPackage`1.ConfigDependencies">
+            <summary>
+              Wrapper around <see cref="P:PluginManager.PackageManager.Models.LocalPluginPackage`1.Dependencies" /> used solely to store dependencies as a
+              list in the .json config. Json.net will first use the getter function of a property to check
+              if it already has instantiated a collection; if it finds one, it will add the deserialized
+              items to it. <see cref="F:Newtonsoft.Json.ObjectCreationHandling.Replace" /> tells Json.net to always
+              instantiate a new collection.
+            </summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.LocalPluginPackage`1.Dependencies">
+            <summary>All the <see cref="T:PluginManager.PackageManager.NuGet.NuGetPackage" /> that this plugin depends on to run its program</summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.LocalPluginPackage`1.PluginAndDependencies">
+            <summary>
+              All the <see cref="T:PluginManager.PackageManager.NuGet.NuGetPackage" /> that this plugin depends on to run its program,
+              and the plugin's package itself
+            </summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.LocalPluginPackage`1.HomeDir">
+            <summary>
+              The home folder for this plugin, where it may create and store files needed when
+              executing its program. This folder also contains a copy of the content folder bundled in the
+              plugin's NuGet package
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalPluginPackage`1.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalPluginPackage`1.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalPluginPackage`1.Equals(PluginManager.PackageManager.Models.LocalPluginPackage{`0})">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalPluginPackage`1.AddDependency(NuGet.Packaging.Core.PackageIdentity)">
+            <summary>
+            Adds a <see cref="T:PluginManager.PackageManager.NuGet.NuGetPackage" /> dependency on which this plugin depends
+            </summary>
+            <param name="packageIdentity">The dependency package's identity</param>
+            <returns>The created <see cref="T:PluginManager.PackageManager.NuGet.NuGetPackage"/></returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalPluginPackage`1.RemoveDependency(NuGet.Packaging.Core.PackageIdentity)">
+            <summary>
+            Removes the <paramref name="packageIdentity"/> dependency on which this plugin depends
+            </summary>
+            <param name="packageIdentity">The dependency package's identity</param>
+            <returns>The removed <see cref="T:PluginManager.PackageManager.NuGet.NuGetPackage"/></returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.LocalPluginPackage`1.PackageAndDependenciesExist(NuGet.PackageManagement.NuGetPackageManager)">
+            <summary>Verifies that the plugin package and all of its dependencies exist locally</summary>
+        </member>
+        <member name="T:PluginManager.PackageManager.Models.OnlinePluginPackage`1">
+            <summary>
+              Represents an online NuGet plugin package. <see cref="T:PluginManager.PackageManager.Models.OnlinePluginPackage`1" />
+              should only be used from packages that aren't locally installed but are available on a NuGet
+              repository.
+            </summary>
+            <typeparam name="TMeta"></typeparam>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.OnlinePluginPackage`1.#ctor(System.String,`0,System.Collections.Generic.List{NuGet.Protocol.Core.Types.VersionInfo})">
+            <summary>Create from search results</summary>
+            <param name="packageId">The package id</param>
+            <param name="metadata">The associated package metadata</param>
+            <param name="onlineVersions">
+              All available versions for given <paramref name="packageId" />
+            </param>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.OnlinePluginPackage`1.#ctor(PluginManager.PackageManager.Models.LocalPluginPackage{`0})">
+            <summary>Copy the information from <paramref name="localPackage" /></summary>
+            <param name="localPackage">The local package to copy from</param>
+        </member>
+        <member name="T:PluginManager.PackageManager.Models.PluginPackage`1">
+            <summary>
+              Represents a plugin NuGet package (as opposed to the plugin's NuGet dependency
+              packages)
+            </summary>
+            <typeparam name="TMeta">The metadata to associate with each plugin</typeparam>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.PluginPackage`1.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.PluginPackage`1.#ctor(NuGet.Packaging.Core.PackageIdentity,`0)">
+            <summary></summary>
+            <param name="identity">The package identity</param>
+            <param name="metadata">The metadata to associate with this plugin</param>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.PluginPackage`1.Metadata">
+            <summary>The metadata to associate with this plugin</summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.PluginPackage`1.OnlineVersions">
+            <summary>All the versions of this plugin package available online</summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.PluginPackage`1.LatestVersionDownloadCount">
+            <summary>Download count for the latest version</summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.PluginPackage`1.TotalDownloadCount">
+            <summary>Total download count of all versions accumulated</summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.PluginPackage`1.LatestOnlineVersion">
+            <summary>
+              Gets the highest version from <see cref="P:PluginManager.PackageManager.Models.PluginPackage`1.OnlineVersions" /> or
+              <see langword="null" />
+            </summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.PluginPackage`1.HasPendingUpdates">
+            <summary>
+              Checks whether the current version is lower than <see cref="P:PluginManager.PackageManager.Models.PluginPackage`1.LatestOnlineVersion" />
+            </summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.Models.PluginPackage`1.SelectedVersion">
+            <summary>
+              Use this property for e.g. selecting which version to install or update to in your
+              UI. Unused by the PluginManager.
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.PluginPackage`1.OnVersionChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.PluginPackage`1.SetOnlineVersions(System.Collections.Generic.List{NuGet.Protocol.Core.Types.VersionInfo})">
+            <summary>
+              Set the available online version from the <see cref="T:NuGet.Protocol.Core.Types.IPackageSearchMetadata" />. Used by
+              <see
+                cref="M:PluginManager.PackageManager.PluginPackageManager`1.Search(System.String,NuGet.Protocol.Core.Types.SourceRepository,System.Boolean,System.Func{System.String,`0},System.Func{NuGet.Protocol.Core.Types.IPackageSearchMetadata,System.Boolean},System.Threading.CancellationToken)" />
+            </summary>
+            <param name="versions">The available versions result</param>
+        </member>
+        <member name="M:PluginManager.PackageManager.Models.PluginPackage`1.SetOnlineVersions(PluginManager.PackageManager.Models.PluginPackage{`0})">
+            <summary>
+              Set the available online version from the <see cref="T:NuGet.Protocol.Core.Types.IPackageSearchMetadata" />. Used by
+              <see
+                cref="M:PluginManager.PackageManager.PluginPackageManager`1.Search(System.String,NuGet.Protocol.Core.Types.SourceRepository,System.Boolean,System.Func{System.String,`0},System.Func{NuGet.Protocol.Core.Types.IPackageSearchMetadata,System.Boolean},System.Threading.CancellationToken)" />
+            </summary>
+            <param name="pluginPackage">The plugin package to copy the online information from</param>
+        </member>
+        <member name="T:PluginManager.PackageManager.NuGet.NuGetMachineWideSettings">
+            <summary>Original from: https://github.com/Wyamio/Wyam/ Copyright (c) 2014 Dave Glick</summary>
+        </member>
+        <member name="T:PluginManager.PackageManager.NuGet.NuGetPackage">
+            <summary>Represent the basic information for a NuGet package.</summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.#ctor(NuGet.Packaging.Core.PackageIdentity)">
+            <summary></summary>
+            <param name="identity">The package's identity (id and version)</param>
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.NuGetPackage.Id">
+            <summary>The package id. Setter is needed for Json.net</summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.NuGetPackage.Version">
+            <summary>
+              The package version. Setter is needed for updating and
+              <see cref="T:PluginManager.PackageManager.Models.OnlinePluginPackage`1" />
+            </summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.NuGetPackage.Identity">
+            <summary>
+              Returns a <see cref="T:NuGet.Packaging.Core.PackageIdentity" /> instance built from <see cref="P:PluginManager.PackageManager.NuGet.NuGetPackage.Id" /> and
+              <see cref="P:PluginManager.PackageManager.NuGet.NuGetPackage.Version" />
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.CompareTo(PluginManager.PackageManager.NuGet.NuGetPackage)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.Equals(PluginManager.PackageManager.NuGet.NuGetPackage)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.OnVersionChanged">
+            <summary>Called by Fody.PropertyChanged. Always call base if overriden.</summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.op_Equality(PluginManager.PackageManager.NuGet.NuGetPackage,PluginManager.PackageManager.NuGet.NuGetPackage)">
+            <summary></summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.op_Inequality(PluginManager.PackageManager.NuGet.NuGetPackage,PluginManager.PackageManager.NuGet.NuGetPackage)">
+            <summary></summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.OnPropertyChanged(System.String)">
+            <summary>
+              Raises the <see cref="E:PluginManager.PackageManager.NuGet.NuGetPackage.PropertyChanged" /> event for Property
+              <paramref name="propName" />
+            </summary>
+            <param name="propName"></param>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetPackage.RaiseVersionChanged">
+            <summary>
+              Some operations (like
+              <see
+                cref="!:NuGetPluginProject&lt;TMeta&gt;.UpdatePluginAsync(NuGet.ProjectManagement.INuGetProjectContext, IEnumerable&lt;NuGet.Protocol.Core.Types.SourceRepository&gt;, NuGetVersion, bool, System.Threading.CancellationToken)" />
+              ) are run in a different thread which prevents UI updates when
+              <see cref="E:PluginManager.PackageManager.NuGet.NuGetPackage.PropertyChanged" /> is raised. This allows the changed event to be propagated
+              after the thread has returned to the synchronization context.
+            </summary>
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.NuGetPackage.PropertyChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.NuGetSourceRepositoryProvider.#ctor(NuGet.Configuration.ISettings)">
+            <inheritdoc />
+        </member>
+        <member name="T:PluginManager.PackageManager.NuGet.SourceRepositoryProvider">
+            <summary>
+              Creates and caches SourceRepository objects, which are the combination of
+              PackageSource instances with a set of supported resource providers. It also manages the set
+              of default source repositories. Original from: https://github.com/Wyamio/Wyam/ Copyright (c)
+              2014 Dave Glick
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.SourceRepositoryProvider.#ctor(NuGet.Configuration.ISettings,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            New instance
+            </summary>
+            <param name="settings"></param>
+            <param name="defaultSources"></param>
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.SourceRepositoryProvider.PackageSourceProvider">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.SourceRepositoryProvider.CreateRepository(NuGet.Configuration.PackageSource)">
+            <summary>Creates or gets a non-default source repository by PackageSource.</summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.SourceRepositoryProvider.CreateRepository(NuGet.Configuration.PackageSource,NuGet.Protocol.FeedType)">
+            <summary>Creates or gets a non-default source repository by PackageSource.</summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.SourceRepositoryProvider.GetRepositories">
+            <summary>Gets all cached repositories.</summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.SourceRepositoryProvider.CreateRepository(System.String)">
+            <summary>Creates or gets a non-default source repository.</summary>
+        </member>
+        <member name="T:PluginManager.PackageManager.NuGet.Project.NuGetDeleteOnRestartManager`1">
+            <summary>Exposes methods which mark partially deleted packages and deletes them.</summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetDeleteOnRestartManager`1.GetPackageDirectoriesMarkedForDeletion">
+            <summary>
+              Gets the list of package directories that are still need to be deleted in the local
+              package repository.
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetDeleteOnRestartManager`1.CheckAndRaisePackageDirectoriesMarkedForDeletion">
+            <summary>
+              Checks for any package directories that are pending to be deleted and raises the
+              <see cref="E:NuGet.PackageManagement.IDeleteOnRestartManager.PackagesMarkedForDeletionFound" />
+              event.
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetDeleteOnRestartManager`1.MarkPackageDirectoryForDeletion(NuGet.Packaging.Core.PackageIdentity,System.String,NuGet.ProjectManagement.INuGetProjectContext)">
+            <summary>
+              Marks package directory for future removal if it was not fully deleted during the
+              normal uninstall process if the directory does not contain any added or modified files.
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetDeleteOnRestartManager`1.DeleteMarkedPackageDirectoriesAsync(NuGet.ProjectManagement.INuGetProjectContext)">
+            <summary>
+              Attempts to remove marked package directories that were unable to be fully deleted
+              during the original uninstall.
+            </summary>
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetDeleteOnRestartManager`1.PackagesMarkedForDeletionFound">
+            <summary>
+              Occurs when it is detected that the one or more packages are marked for deletion in
+              the current solution.
+            </summary>
+        </member>
+        <member name="T:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1">
+            <summary>
+              Manages the list of plugins and their dependencies and stores it in .json
+              configuration file.
+            </summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.ConfigPlugins">
+            <summary>
+              Wrapper around <see cref="F:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1._identityPluginMap" /> used solely to store plugins as a
+              list in the .json config. Json.net will first use the getter function of a property to check
+              if it already has instantiated a collection; if it finds one, it will add the deserialized
+              items to it. <see cref="F:Newtonsoft.Json.ObjectCreationHandling.Replace" /> tells Json.net to always
+              instantiate a new collection.
+            </summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.PackageDirectoriesMarkedForDeletion">
+            <summary>
+              Packages that have been uninstalled but couldn't be deleted during uninstall. They
+              will be deleted at a later time, see <see cref="T:PluginManager.PackageManager.NuGet.Project.NuGetDeleteOnRestartManager`1" />.
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.LoadAsync(Extensions.System.IO.FilePath,Extensions.System.IO.DirectoryPath)">
+            <summary>
+              Tries to load the <see cref="T:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1" /> from an
+              existing configuration file. Instantiates a new repository if it fails.
+            </summary>
+            <param name="solutionFilePath">The configuration file path</param>
+            <param name="pluginHomeDir">The root directory underneath which plugins' home are located</param>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.SaveAsync">
+            <summary>Saves the repository to file</summary>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.FindPluginById(System.String)">
+            <summary>
+              Searches for a <see cref="T:PluginManager.PackageManager.Models.LocalPluginPackage`1" /> named
+              <paramref name="packageId" />. This search doesn't include dependencies.
+            </summary>
+            <param name="packageId">The plugin's package id</param>
+            <returns>
+              The <see cref="T:PluginManager.PackageManager.Models.LocalPluginPackage`1" /> if it is found or
+              <see langword="null" />
+            </returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.FindPackageById(System.String)">
+            <summary>
+              Searches for plugins' <see cref="T:PluginManager.PackageManager.Models.LocalPluginPackage`1" /> or a dependencies'
+              <see cref="T:PluginManager.PackageManager.NuGet.NuGetPackage" /> named <paramref name="packageId" />
+            </summary>
+            <param name="packageId">The plugin's or dependency's package id</param>
+            <returns>All <see cref="T:PluginManager.PackageManager.NuGet.NuGetPackage" /> matching <paramref name="packageId" /></returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.IsPluginInstalled(NuGet.Packaging.Core.PackageIdentity,PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution{`0})">
+            <summary>
+              Verifies that a package has been previously installed as well as currently existing
+              locally with all dependencies.
+            </summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.AddPlugin(NuGet.Packaging.Core.PackageIdentity,`0)">
+            <summary>Add a new plugin</summary>
+            <param name="identity"></param>
+            <param name="metadata"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.NuGetPluginInstallSession">
+            <summary>
+              Temporary session for installing. The plugin will only be added to the repository if
+              the install operation is successful, see <see cref="P:PluginManager.PackageManager.NuGet.Project.NuGetInstalledPluginRepository`1.NuGetPluginInstallSession.Success" />.
+            </summary>
+        </member>
+        <member name="T:PluginManager.PackageManager.NuGet.Project.NuGetPluginProject`1">
+            <summary>This primarily exists to intercept package installations and store their paths</summary>
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetPluginProject`1.InstallPackageAsync(NuGet.Packaging.Core.PackageIdentity,NuGet.Protocol.Core.Types.DownloadResourceResult,NuGet.ProjectManagement.INuGetProjectContext,System.Threading.CancellationToken)">
+            <summary>
+              This gets called for every package install, including dependencies, and is our only
+              chance to handle plugins' dependencies PackageIdentity instances If the package is already
+              installed, returns false.
+            </summary>
+            <param name="packageIdentity"></param>
+            <param name="downloadResourceResult"></param>
+            <param name="nuGetProjectContext"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.SolutionDirectory">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.IsSolutionOpen">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.NuGetProjectContext">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.IsSolutionAvailableAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.GetNuGetProjectsAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.GetNuGetProjectSafeNameAsync(NuGet.ProjectManagement.NuGetProject)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.GetNuGetProjectAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.OnActionsExecuted(System.Collections.Generic.IEnumerable{NuGet.PackageManagement.ResolvedAction})">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.EnsureSolutionIsLoaded">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.DoesNuGetSupportsAnyProjectAsync">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.ActionsExecuted">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.AfterNuGetCacheUpdated">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.AfterNuGetProjectRenamed">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.NuGetProjectAdded">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.NuGetProjectRemoved">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.NuGetProjectRenamed">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.NuGetProjectUpdated">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.SolutionClosed">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.SolutionClosing">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.SolutionOpened">
+            <inheritdoc />
+        </member>
+        <member name="E:PluginManager.PackageManager.NuGet.Project.NuGetPluginSolution`1.SolutionOpening">
+            <inheritdoc />
+        </member>
+        <member name="T:PluginManager.PackageManager.NuGet.Project.NuGetProjectContext">
+            <summary>Original from: https://github.com/Wyamio/Wyam/ Copyright (c) 2014 Dave Glick</summary>
+        </member>
+        <member name="T:PluginManager.PackageManager.PluginPackageManager`1">
+            <summary>A wrapper around <see cref="T:NuGet.PackageManagement.NuGetPackageManager" /> to simplify package management.</summary>
+        </member>
+        <member name="P:PluginManager.PackageManager.PluginPackageManager`1.Count">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.Create(Extensions.System.IO.DirectoryPath,Extensions.System.IO.DirectoryPath,Extensions.System.IO.DirectoryPath,Extensions.System.IO.FilePath,System.Func{NuGet.Configuration.ISettings,PluginManager.PackageManager.NuGet.SourceRepositoryProvider})">
+            <summary>Instantiates a new package manager</summary>
+            <param name="pluginDirPath"></param>
+            <param name="pluginHomeDirPath"></param>
+            <param name="packageDirPath"></param>
+            <param name="configFilePath"></param>
+            <param name="providerCreator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.AddRepository(System.String)">
+            <summary>
+              Adds the specified package source. Sources added this way will be searched before any
+              global sources.
+            </summary>
+            <param name="repository">The package source to add.</param>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.SaveConfigAsync">
+            <summary>Saves the local plugin repository state to file</summary>
+            <returns>Success of operation</returns>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.FindInstalledPluginVersions(System.String,System.Boolean)">
+            <summary>Gets all installed versions of package <paramref name="packageId" />, if any.</summary>
+            <param name="packageId">The package identifier.</param>
+            <param name="verify">
+              Whether to verify if each version, and its dependencies, are correctly
+              installed.
+            </param>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.GetInstalledPluginAssembliesFilePath(NuGet.Packaging.Core.PackageIdentity,System.Collections.Generic.IEnumerable{Extensions.System.IO.FilePath}@,System.Collections.Generic.IEnumerable{Extensions.System.IO.FilePath}@,NuGet.Frameworks.NuGetFramework)">
+            <summary>
+              Gets assemblies (.dll, .exe) file paths referenced in given
+              <paramref name="packageIdentity" /> and its dependencies , for framework
+              <paramref name="targetFramework" />
+            </summary>
+            <param name="packageIdentity">Package to look for</param>
+            <param name="dependenciesAssemblies"></param>
+            <param name="targetFramework">
+              Target framework to match, or current assembly's framework if
+              <see langword="null" />
+            </param>
+            <param name="pluginAssemblies"></param>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.InstallAsync(PluginManager.PackageManager.Models.OnlinePluginPackage{`0},NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+              Installs the latest online version of package <paramref name="onlinePackage" />.
+              Package's version and metadata will be derived from
+              <paramref name="onlinePackage.LatestOnlineVersion.LatestOnlineVersion" /> and
+              <paramref name="onlinePackage.Metadata.Metadata" />. Package's data, and metadata will be saved to
+              the package json configuration file.
+            </summary>
+            <param name="onlinePackage">The online package to install</param>
+            <param name="framework">Which .NET framework should the package be compatible with</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="onlinePackage" /> is already installed</exception>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.InstallAsync(PluginManager.PackageManager.Models.OnlinePluginPackage{`0},NuGet.Versioning.NuGetVersion,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+              Installs package <paramref name="onlinePackage" /> version
+              <paramref name="onlineVersion" />. Package data, and
+              <paramref name="onlinePackage.Metadata.Metadata" /> will be saved to the package json configuration
+              file.
+            </summary>
+            <param name="onlinePackage">The online package to install</param>
+            <param name="onlineVersion">The version of the package to install</param>
+            <param name="framework">Which .NET framework should the package be compatible with</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="onlinePackage" /> is already installed</exception>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.InstallAsync(System.String,`0,NuGet.Versioning.VersionRange,System.Boolean,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+              Installs the latest version of package <paramref name="packageId" /> that matches
+              <paramref name="versionRange" />. Package data, and <paramref name="metadata" /> will be
+              saved to the package json configuration file. If plugin already exists try to update its
+              version.
+            </summary>
+            <param name="packageId">The package name</param>
+            <param name="metadata">Optional metadata to associate</param>
+            <param name="versionRange">The version constraint</param>
+            <param name="allowPrereleaseVersions">
+              Whether to include pre-release version in the search
+              results
+            </param>
+            <param name="framework">Which .NET framework should the package be compatible with</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="packageId" /> contains only white spaces</exception>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.UpdateAsync(PluginManager.PackageManager.Models.LocalPluginPackage{`0},NuGet.Versioning.NuGetVersion,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+              Attempts to update plugin <paramref name="pluginPackage" />. If no
+              <paramref name="version" /> is specified, the latest available version will be installed.
+            </summary>
+            <param name="pluginPackage">The plugin package to update</param>
+            <param name="version">Optional version to install</param>
+            <param name="allowPrereleaseVersions">Whether to include pre-release versions</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException">
+              <paramref name="pluginPackage" /> cannot be a development
+              plugin
+            </exception>
+            <exception cref="T:System.ArgumentException">Plugin <paramref name="pluginPackage" /> is not installed</exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.PackageManager.PluginPackageManager`1.UpdateAsync(System.String,NuGet.Versioning.NuGetVersion,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+              Attempts to update plugin <paramref name="packageId" />. If no
+              <paramref name="version" /> is specified, the latest available version will be installed.
+            </summary>
+            <param name="packageId">The plugin package id to update</param>
+            <param name="version">Optional version to install</param>
+            <param name="allowPrereleaseVersions">Whether to include pre-release versions</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="packageId" /> is empty</exception>
+            <exception cref="T:System.ArgumentException">Plugin <paramref name="packageId" /> is not installed</exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.PluginChannelDisposer`6.#ctor(PluginManager.PluginManagerBase{`0,`1,`2,`3,`4,`5},System.String,System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PluginChannelDisposer`6.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:PluginManager.PluginManagerBase`6">
+            <summary>
+              The main class for dealing with plugins. Inherit this class to implement
+              PluginManager.NET in your project.
+            </summary>
+            <typeparam name="TParent">
+              The latest child in the inheritance hierarchy of
+              <see
+                cref="T:PluginManager.PluginManagerBase`6" />
+            </typeparam>
+            <typeparam name="TPluginInstance">Represents an instance of a local plugin in-memory</typeparam>
+            <typeparam name="TMeta">The container for the metadata associated with plugin</typeparam>
+            <typeparam name="ICustomPluginManager">
+              The plugin manager interface to publish as a remote
+              service. Use <see cref="T:PluginManager.Interop.Contracts.IPluginManager`1" /> for default behaviour
+            </typeparam>
+            <typeparam name="ICore">The actual service that needs to be published as a remote service</typeparam>
+            <typeparam name="IPlugin">
+              The plugin interface that plugins publish as a remote service. Use
+              <see cref="T:PluginManager.Interop.Contracts.IPluginBase" /> for default behaviour
+            </typeparam>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.Locations">
+            <summary>
+              A contract interface which returns the paths to various key folders and files used by
+              the PluginManager. This should be implemented by project users.
+            </summary>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.LogAdapter">
+            <summary>
+              Mandatory log adapter to forward PluginManager's log output to the application's log
+              output
+            </summary>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.UISynchronizationContext">
+            <summary>
+            Synchronization context used to synchronize with the UI thread when updating an object from a worker thread
+            </summary>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.GetPluginHostTypeAssemblyName(`1)">
+            <summary>
+              Gets the assembly name of the Interop library that implements
+              <see cref="T:PluginManager.Interop.Contracts.IPluginBase" /> or <see cref="T:PluginManager.Interop.Plugins.PluginBase`3" />) to be loaded
+              by PluginHost.exe
+            </summary>
+            <param name="pluginInstance">The plugin that will be started</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.GetPluginHostTypeAssemblyMinimumVersion(`1)">
+            <summary>
+              Gets the minimum version of the the Interop library that implements
+              <see cref="T:PluginManager.Interop.Contracts.IPluginBase" /> or <see cref="T:PluginManager.Interop.Plugins.PluginBase`3" />) to be loaded
+              by PluginHost.exe
+            </summary>
+            <param name="pluginInstance">The plugin that will be started</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.GetPluginHostTypeQualifiedName(`1)">
+            <summary>
+              Gets the namespace-prepended type name of the class which implements
+              <see cref="T:PluginManager.Interop.Contracts.IPluginBase" /> or <see cref="T:PluginManager.Interop.Plugins.PluginBase`3" />) to be
+              instantiated by PluginHost.exe
+            </summary>
+            <param name="pluginInstance">The plugin that will be started</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.GetCoreInstance">
+            <summary>Returns the service that needs to be shared with plugins</summary>
+            <returns>the service that needs to be shared with plugins</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.CreatePluginInstance(PluginManager.PackageManager.Models.LocalPluginPackage{`2})">
+            <summary>
+              Instantiates a <typeparamref name="TPluginInstance" /> for <paramref name="package" />
+            </summary>
+            <param name="package">The package for which <typeparamref name="TPluginInstance" /> is instantiated</param>
+            <returns>A <typeparamref name="TPluginInstance" /> instance</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.CreateDevMetadata(System.String,System.Diagnostics.FileVersionInfo)">
+            <summary>
+              Instantiates a <typeparamref name="TMeta" /> for package <paramref name="packageName" />
+              version <paramref name="fileVersionInfo" />
+            </summary>
+            <param name="packageName">The package name for which to create <typeparamref name="TMeta" /></param>
+            <param name="fileVersionInfo">
+              The file version for which to create <typeparamref name="TMeta" />
+            </param>
+            <returns>A <typeparamref name="TMeta" /> instance or null</returns>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.AllPluginsInternal">
+            <summary>All plugins currently loaded</summary>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.InterfaceChannelMap">
+            <summary>
+              Maps plugins' published qualified type names to the channel name on which the service
+              is published
+            </summary>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.RunningPluginMap">
+            <summary>Maps running plugins' session GUID to their plugin instance</summary>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.IsDisposed">
+            <summary>Whether the Plugin Manager has been disposed</summary>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.#ctor">
+            <summary>
+              Creates the PluginManagerBase instance. There should only be one instance at all
+              times.
+            </summary>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.AllPlugins">
+            <summary>Read-only version collection of all plugins currently loaded</summary>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.Initialize(System.Boolean)">
+            <summary>
+              Initializes the IPC server, scans for plugins and starts enabled plugins if
+              <paramref name="startEnabledPlugins" /> is true.
+            </summary>
+            <param name="startEnabledPlugins">Whether to start enabled plugins</param>
+            <returns></returns>
+            <exception cref="T:System.InvalidProgramException">When already initialized</exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.Cleanup">
+            <summary>Stops all running plugins and stops the IPC server.</summary>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.CreateSourceRepositoryProvider(NuGet.Configuration.ISettings)">
+            <summary>
+            Returns a provider which defines which repository are available for downloading NuGet packages
+            </summary>
+            <param name="s">The NuGet configuration (nuget.config file)</param>
+            <returns>The repository provider</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.StartPlugins">
+            <summary>Starts all enabled plugins.</summary>
+            <returns>Whether all plugins started successfully</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.StopPlugins">
+            <summary>Stops all running plugins</summary>
+            <returns>Whether all plugins stopped successfully</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.RefreshPlugins">
+            <summary>Stops all running plugins, clears all loaded plugins, scans and load available plugin</summary>
+            <returns>The number of plugin loaded</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.OnPluginStarting(`1)">
+            <summary>
+              Called immediately after checking the plugin passes the pre-requisites to be started,
+              and before the plugin process has been created. Always call this base method if it is
+              inherited.
+            </summary>
+            <param name="pluginInstance">The plugin to be started</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.OnPluginStarted(`1)">
+            <summary>
+              Called after the plugin process has been started, and before confirming connection
+              from it.
+            </summary>
+            <param name="pluginInstance">The plugin that has been started</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.OnPluginStartFailed(`1,PluginManager.Models.PluginStartFailure,System.String)">
+            <summary>
+              Called when a plugin failed to start. Use this to add custom handling of errors.
+            Make sure to call base method.
+            </summary>
+            <param name="pluginInstance">The plugin that failed to start</param>
+            <param name="reason">The reason why the plugin failed to start</param>
+            <param name="errMsg">The error message</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.OnPluginConnected(`1,`5)">
+            <summary>
+              Called after the plugin process has been started, and connection has been made with
+              this Plugin Manager instance Always call this base method if it is inherited.
+            </summary>
+            <param name="pluginInstance">The connected plugin instance</param>
+            <param name="plugin">The connected plugin service</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.OnPluginStopping(`1)">
+            <summary>
+              Called immediately after checking the plugin passes the pre-requisites to be stopped,
+              and before sending it stop signals. Always call this base method if it is inherited.
+            </summary>
+            <param name="pluginInstance">The plugin to be stopped</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.OnPluginStopped(`1)">
+            <summary>
+              Called after the plugin has been stopped or killed. Its
+              <see cref="P:PluginManager.Contracts.IPluginInstance`3.Process" /> is still available. Always
+              call this base method if it is inherited.
+            </summary>
+            <param name="pluginInstance">The plugin that stopped</param>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.OnPluginCrashed(`1)">
+            <summary>
+              Called during <see cref="M:PluginManager.PluginManagerBase`6.OnPluginStopped(`1)" /> and after
+              <see cref="M:PluginManager.Contracts.IPluginInstance`3.OnStopped(System.Boolean)" />. Calling base method is
+              unnecessary.
+            </summary>
+            <param name="pluginInstance">The crashed plugin's instance</param>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.PackageManager">
+            <summary>
+            The package manager instance
+            </summary>
+        </member>
+        <member name="P:PluginManager.PluginManagerBase`6.PMLock">
+            <summary>
+            Synchronizes calls to the Package Manager (e.g. to avoid installing two plugins at the same time)
+            </summary>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.InstallPluginAsync(PluginManager.PackageManager.Models.OnlinePluginPackage{`2},System.Threading.CancellationToken)">
+            <summary>
+              Installs the latest online version of package <paramref name="onlinePackage" />.
+              Package's version and metadata will be derived from
+              <paramref name="onlinePackage.LatestOnlineVersion.LatestOnlineVersion" /> and
+              <paramref name="onlinePackage.Metadata.Metadata" />. Package's data, and metadata will be saved to
+              the package json configuration file.
+            </summary>
+            <param name="onlinePackage">The online package to install</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="onlinePackage" /> is already installed</exception>
+            <exception cref="T:System.InvalidOperationException">
+              NuGet returned a successful result but the plugin
+              cannot be found
+            </exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.InstallPluginAsync(PluginManager.PackageManager.Models.OnlinePluginPackage{`2},NuGet.Versioning.NuGetVersion,System.Threading.CancellationToken)">
+            <summary>
+              Installs package <paramref name="onlinePackage" /> version
+              <paramref name="onlineVersion" />. Package data, and
+              <paramref name="onlinePackage.Metadata.Metadata" /> will be saved to the package json configuration
+              file.
+            </summary>
+            <param name="onlinePackage">The online package to install</param>
+            <param name="onlineVersion">The version of the package to install</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="onlinePackage" /> is already installed</exception>
+            <exception cref="T:System.InvalidOperationException">
+              NuGet returned a successful result but the plugin
+              cannot be found
+            </exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.InstallPluginAsync(System.String,`2,NuGet.Versioning.NuGetVersion,System.Boolean)">
+            <summary>
+              Install plugin <paramref name="packageName" />. Latest available version will be
+              installed if <paramref name="version" /> is <see langword="null" />.
+            </summary>
+            <param name="packageName">The package name of the plugin to be installed</param>
+            <param name="pluginMetadata">Optional metadata to associate with the plugin</param>
+            <param name="version">Optional specific version to install</param>
+            <param name="allowPrerelease">Whether to include versions marked as pre-release</param>
+            <returns>Success status of installation</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException"><paramref name="packageName" /> contains only white spaces</exception>
+            <exception cref="T:System.ArgumentException">
+              A package named <paramref name="packageName" /> is already
+              installed
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+              NuGet returned a successful result but the plugin
+              cannot be found
+            </exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.PostInstallPlugin(System.String)">
+            <summary>
+              Verifies that <paramref name="packageName" /> can be found in the local packages, and
+              adds it to the list of loaded plugins. Called by InstallPluginAsync() after a
+              successful Install result from the <see cref="P:PluginManager.PluginManagerBase`6.PackageManager" />.
+              (!!) A lock on PMLock should have been acquired before calling this method.
+            </summary>
+            <param name="packageName">The installed package name</param>
+            <returns>Whether the package has been successfully installed</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.UpdatePluginAsync(PluginManager.PackageManager.Models.LocalPluginPackage{`2},NuGet.Versioning.NuGetVersion,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+              Attempts to update plugin <paramref name="pluginPackage" />. If no
+              <paramref name="version" /> is specified, the latest available version will be installed.
+            </summary>
+            <param name="pluginPackage">The plugin package to update</param>
+            <param name="version">Optional version to install</param>
+            <param name="allowPrereleaseVersions">Whether to include pre-release versions</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="pluginPackage" /> cannot be a development plugin</exception>
+            <exception cref="T:System.ArgumentException">Plugin <paramref name="pluginPackage" /> is not installed</exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.UpdatePluginAsync(System.String,NuGet.Versioning.NuGetVersion,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+              Attempts to update plugin <paramref name="packageId" />. If no
+              <paramref name="version" /> is specified, the latest available version will be installed.
+            </summary>
+            <param name="packageId">The plugin package id to update</param>
+            <param name="version">Optional version to install</param>
+            <param name="allowPrereleaseVersions">Whether to include pre-release versions</param>
+            <param name="cancellationToken"></param>
+            <returns>Success of operation</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="packageId" /> is empty</exception>
+            <exception cref="T:System.ArgumentException">Plugin <paramref name="packageId" /> is not installed</exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.UninstallPluginAsync(PluginManager.PackageManager.Models.LocalPluginPackage{`2})">
+            <summary>Uninstall <paramref name="pluginPackage" />. The plugin will be stopped if it is running.</summary>
+            <param name="pluginPackage">The plugin to be uninstalled</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException">
+              When <paramref name="pluginPackage" /> is a Development
+              plugin
+            </exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.UninstallPluginAsync(`1)">
+            <summary>Uninstall <paramref name="pluginInstance" />. The plugin will be stopped if it is running.</summary>
+            <param name="pluginInstance">The plugin to be uninstalled</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException">
+              When <paramref name="pluginInstance" /> is a Development
+              plugin
+            </exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.SearchPluginsAsync(System.String,System.Boolean,PluginManager.Contracts.IPluginRepositoryService{`2},System.Threading.CancellationToken)">
+            <summary>
+              Search available NuGet repositories for all packages matching
+              <paramref name="searchTerm" /> and <paramref name="enablePrerelease" />. Only NuGet packages
+              that are also available on the <paramref name="repoSvc" /> will be included.
+            </summary>
+            <param name="searchTerm">Part or totality of the package name to look for</param>
+            <param name="enablePrerelease">Whether to include packages that are marked as pre-release</param>
+            <param name="repoSvc">Your plugin repository service</param>
+            <param name="cancellationToken"></param>
+            <returns>All available packages or <see langword="null" /></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.SearchPluginsAsync(System.String,System.Boolean,System.Func{System.String,`2},System.Func{NuGet.Protocol.Core.Types.IPackageSearchMetadata,System.Boolean},System.Threading.CancellationToken)">
+            <summary>
+              Search available NuGet repositories for all packages matching
+              <paramref name="searchTerm" />, <paramref name="enablePrerelease" />, and
+              <paramref name="filterSearchResultFunc" /> (if provided).
+            </summary>
+            <param name="searchTerm">Part or totality of the package name to look for</param>
+            <param name="enablePrerelease">Whether to include packages that are marked as pre-release</param>
+            <param name="getMetaFromPackageNameFunc">
+              Associates an optional <typeparamref name="TMeta" /> with each
+              package
+            </param>
+            <param name="filterSearchResultFunc">Filters through the search result</param>
+            <param name="cancellationToken"></param>
+            <returns>All available packages or <see langword="null" /></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.ScanLocalPlugins(System.Boolean)">
+            <summary>Scan local repositories for installed plugins.</summary>
+            <param name="includeDev">Whether to include development plugin in the scan</param>
+            <returns>Local plugins (NuGet plugins, and optionally development plugins)</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.ScanInstalledPlugins">
+            <summary>
+              Scan for installed plugins only (those installed with NuGet). That doesn't include
+              development plugins.
+            </summary>
+            <returns>Installed plugins</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.ScanDevelopmentPlugins">
+            <summary>
+              Scan for development plugins only. That doesn't include plugins installed through
+              NuGet.
+            </summary>
+            <returns>installed NuGet plugins</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.StartPlugin(`1,System.Boolean)">
+            <summary>
+            Start plugin <paramref name="pluginInstance"/>
+            </summary>
+            <param name="pluginInstance">The plugin to start</param>
+            <param name="attachDebugger">Whether to attach the debugger to the plugin host on start</param>
+            <returns>Success of operation</returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.StopPlugin(`1)">
+            <summary>
+            Stops plugin <paramref name="pluginInstance"/>
+            </summary>
+            <param name="pluginInstance">The plugin to stop</param>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.ConnectPlugin(System.String,System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.GetService(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.PluginManagerBase`6.RegisterService(System.Guid,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:PluginManager.PropertyChangedNotificationInterceptor">
+            <summary>
+              Global interceptor for Fody.PropertyChanged. Synchronizes notifications with the UI
+              thread. https://github.com/Fody/PropertyChanged/wiki/NotificationInterception
+            </summary>
+        </member>
+        <member name="M:PluginManager.PropertyChangedNotificationInterceptor.Intercept(System.Object,System.Action,System.String,System.Object,System.Object)">
+            <summary>
+              Called for every OnPropertyChanged. For classes that already implement
+              OnPropertyChanged method then having a PropertyChangedNotificationInterceptor class will
+              have no effect on those classes.
+            </summary>
+            <param name="target"></param>
+            <param name="onPropertyChangedAction"></param>
+            <param name="propertyName"></param>
+            <param name="before"></param>
+            <param name="after"></param>
+        </member>
+        <member name="T:PluginManager.Services.DefaultPluginRepositoryService`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.FetchPluginMetadataList(System.Threading.CancellationToken)">
+            <summary>
+              Fetch the metadata of all plugin indexed by the API pointed to by
+              <see cref="P:PluginManager.Services.DefaultPluginRepositoryService`1.UpdateUrl" />
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns>Plugin metadatas or <see langword="null" /></returns>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.SearchPlugins(System.String,System.Boolean,PluginManager.PackageManager.PluginPackageManager{`0},System.Threading.CancellationToken)">
+            <summary>
+              Search available NuGet repositories for all packages matching
+              <paramref name="searchTerm" /> and <paramref name="enablePrerelease" />. Only NuGet packages
+              that are also indexed by the API pointed to by <see cref="P:PluginManager.Services.DefaultPluginRepositoryService`1.UpdateUrl" /> will be included.
+            </summary>
+            <param name="searchTerm">Part or totality of the package name to look for</param>
+            <param name="enablePrerelease">Whether to include packages that are marked as pre-release</param>
+            <param name="pm">The package manager</param>
+            <param name="cancellationToken"></param>
+            <returns>All available packages or <see langword="null" /></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.CreateHttpClient">
+            <summary>Override to create a custom HttpClient instance</summary>
+            <returns><see cref="T:System.Net.Http.HttpClient" /> instance</returns>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.SetHttpClientHeaders(System.Net.Http.HttpClient)">
+            <summary>Override to set custom http client headers</summary>
+            <param name="client">The <see cref="T:System.Net.Http.HttpClient" /> instance</param>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.DeserializePluginMetadataList(System.String)">
+            <summary>
+              Deserialize the API response's content from
+              <see cref="M:PluginManager.Services.DefaultPluginRepositoryService`1.FetchPluginMetadataList(System.Threading.CancellationToken)" />
+            </summary>
+            <param name="response">The response content</param>
+            <returns>Deserialized list of metadata</returns>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.GetMetaFromPackageName(System.String,System.Collections.Generic.Dictionary{System.String,`0})">
+            <summary>
+              Associates a <typeparamref name="TMeta" /> to <paramref name="packageName" />. Override to
+              change default behaviour (simple dictionary lookup).
+            </summary>
+            <param name="packageName">Name of a package available on the NuGet repository</param>
+            <param name="allowedPluginMetadataMap">
+              A map of package name and plugin metadata returned from
+              the API
+            </param>
+            <returns>The metadata to associate with package <paramref name="packageName" /></returns>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.FilterSearchResult(NuGet.Protocol.Core.Types.IPackageSearchMetadata,System.Collections.Generic.Dictionary{System.String,`0})">
+            <summary>
+              Filters which packages will be returned from
+              <see cref="M:PluginManager.Services.DefaultPluginRepositoryService`1.SearchPlugins(System.String,System.Boolean,PluginManager.PackageManager.PluginPackageManager{`0},System.Threading.CancellationToken)" />.
+              Override to change default behaviour (simple dictionary lookup).
+            </summary>
+            <param name="searchResult">Data about a package available on the NuGet repository</param>
+            <param name="allowedPluginMetadataMap">
+              A map of package name and plugin metadata returned from
+              the API
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:PluginManager.Services.DefaultPluginRepositoryService`1.GetPackageIdFromMetadata(`0)">
+            <summary>
+              Predicate which returns the package name for the given <paramref name="metadata" />.
+              This method is required by
+              <see cref="M:PluginManager.Services.DefaultPluginRepositoryService`1.SearchPlugins(System.String,System.Boolean,PluginManager.PackageManager.PluginPackageManager{`0},System.Threading.CancellationToken)" />
+            </summary>
+            <param name="metadata">The metadata instance</param>
+            <returns>The name of the package which <typeparamref name="TMeta" /> belongs to</returns>
+        </member>
+        <member name="P:PluginManager.Services.DefaultPluginRepositoryService`1.UpdateUrl">
+            <summary>API GET endpoint</summary>
+        </member>
+        <member name="P:PluginManager.Services.DefaultPluginRepositoryService`1.UpdateEnabled">
+            <inheritdoc />
+        </member>
+        <member name="T:PluginManager.Sys.Converters.DirectoryPathConverter">
+            <summary>
+            Converts <see cref="T:Extensions.System.IO.DirectoryPath"/> to json and vice-versa
+            </summary>
+        </member>
+        <member name="M:PluginManager.Sys.Converters.DirectoryPathConverter.WriteJson(Newtonsoft.Json.JsonWriter,Extensions.System.IO.DirectoryPath,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:PluginManager.Sys.Converters.DirectoryPathConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,Extensions.System.IO.DirectoryPath,System.Boolean,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusUnknown">
+            <summary>The application is in a state that is not described by any other enumerated state.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusRunning">
+            <summary>The application is currently running.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusStopped">
+            <summary>The Restart Manager has stopped the application.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusStoppedOther">
+            <summary>An action outside the Restart Manager has stopped the application.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusRestarted">
+            <summary>The Restart Manager has restarted the application.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusErrorOnStop">
+            <summary>The Restart Manager encountered an error when stopping the application.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusErrorOnRestart">
+            <summary>The Restart Manager encountered an error when restarting the application.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusShutdownMasked">
+            <summary>Shutdown is masked by a filter.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_STATUS.RmStatusRestartMasked">
+            <summary>Restart is masked by a filter.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_TYPE.RmUnknownApp">
+            <summary>
+              The application cannot be classified as any other type. An application of this type
+              can only be shut down by a forced shutdown.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_TYPE.RmMainWindow">
+            <summary>A Windows application run as a stand-alone process that displays a top-level window.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_TYPE.RmOtherWindow">
+            <summary>
+              A Windows application that does not run as a stand-alone process and does not display
+              a top-level window.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_TYPE.RmService">
+            <summary>The application is a Windows service.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_TYPE.RmExplorer">
+            <summary>The application is Windows Explorer.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_TYPE.RmConsole">
+            <summary>The application is a stand-alone console application.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_APP_TYPE.RmCritical">
+            <summary>
+              A system restart is required to complete the installation because a process cannot be
+              shut down. The process cannot be shut down because of the following reasons. The process may
+              be a critical process. The current user may not have permission to shut down the process.
+              The process may belong to the primary installer that started the Restart Manager.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_REBOOT_REASON.RmRebootReasonNone">
+            <summary>A system restart is not required.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_REBOOT_REASON.RmRebootReasonPermissionDenied">
+            <summary>
+              The current user does not have sufficient privileges to shut down one or more
+              processes.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_REBOOT_REASON.RmRebootReasonSessionMismatch">
+            <summary>One or more processes are running in another Terminal Services session.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_REBOOT_REASON.RmRebootReasonCriticalProcess">
+            <summary>
+              A system restart is needed because one or more processes to be shut down are critical
+              processes.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_REBOOT_REASON.RmRebootReasonCriticalService">
+            <summary>
+              A system restart is needed because one or more services to be shut down are critical
+              services.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_REBOOT_REASON.RmRebootReasonDetectedSelf">
+            <summary>A system restart is needed because the current process must be shut down.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_SUCCESS">
+            <summary>The resources specified have been registered.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_SEM_TIMEOUT">
+            <summary>
+              A Restart Manager function could not obtain a Registry write mutex in the allotted
+              time. A system restart is recommended because further use of the Restart Manager is likely
+              to fail.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_BAD_ARGUMENTS">
+            <summary>
+              One or more arguments are not correct. This error value is returned by Restart
+              Manager function if a NULL pointer or 0 is passed in a parameter that requires a non-null
+              and non-zero value.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_WRITE_FAULT">
+            <summary>An operation was unable to read or write to the registry.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_OUTOFMEMORY">
+            <summary>
+              A Restart Manager operation could not complete because not enough memory was
+              available.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_INVALID_HANDLE">
+            <summary>
+              An invalid handle was passed to the function. No Restart Manager session exists for
+              the handle supplied.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_MAX_SESSIONS_REACHED">
+            <summary>The maximum number of sessions has been reached.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_MORE_DATA">
+            <summary>
+              This error value is returned by the RmGetList function if the rgAffectedApps buffer
+              is too small to hold all application information in the list.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RmResult.ERROR_CANCELLED">
+            <summary>The current operation is canceled by user.</summary>
+        </member>
+        <member name="T:PluginManager.Sys.RestartManager.RestartManager.RM_UNIQUE_PROCESS">
+            <summary>
+              Uniquely identifies a process by its PID and the time the process began. An array of
+              RM_UNIQUE_PROCESS structures can be passed to the RmRegisterResources function.
+            </summary>
+        </member>
+        <member name="T:PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO">
+            <summary>Describes an application that is to be registered with the Restart Manager.</summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO.Process">
+            <summary>
+              Contains an RM_UNIQUE_PROCESS structure that uniquely identifies the application by
+              its PID and the time the process began.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO.strAppName">
+            <summary>
+              If the process is a service, this parameter returns the long name for the service. If
+              the process is not a service, this parameter returns the user-friendly name for the
+              application. If the process is a critical process, and the installer is run with elevated
+              privileges, this parameter returns the name of the executable file of the critical process.
+              If the process is a critical process, and the installer is run as a service, this parameter
+              returns the long name of the critical process.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO.strServiceShortName">
+            <summary>
+              If the process is a service, this is the short name for the service. This member is
+              not used if the process is not a service.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO.ApplicationType">
+            <summary>
+              Contains an RM_APP_TYPE enumeration value that specifies the type of application as
+              RmUnknownApp, RmMainWindow, RmOtherWindow, RmService, RmExplorer or RmCritical.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO.AppStatus">
+            <summary>
+              Contains a bit mask that describes the current status of the application. See the
+              RM_APP_STATUS enumeration.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO.TSSessionId">
+            <summary>
+              Contains the Terminal Services session ID of the process. If the terminal session of
+              the process cannot be determined, the value of this member is set to RM_INVALID_SESSION
+              (-1). This member is not used if the process is a service or a system critical process.
+            </summary>
+        </member>
+        <member name="F:PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO.bRestartable">
+            <summary>
+              TRUE if the application can be restarted by the Restart Manager; otherwise, FALSE.
+              This member is always TRUE if the process is a service. This member is always FALSE if the
+              process is a critical system process.
+            </summary>
+        </member>
+        <member name="M:PluginManager.Sys.RestartManager.RestartManager.NativeMethods.RmRegisterResources(System.Int32,System.UInt32,System.String[],System.UInt32,PluginManager.Sys.RestartManager.RestartManager.RM_UNIQUE_PROCESS[],System.UInt32,System.String[])">
+            <summary>
+              Registers resources to a Restart Manager session. The Restart Manager uses the list
+              of resources registered with the session to determine which applications and services must
+              be shut down and restarted. Resources can be identified by filenames, service short names,
+              or RM_UNIQUE_PROCESS structures that describe running applications. The RmRegisterResources
+              function can be used by a primary or secondary installer.
+            </summary>
+            <param name="dwSessionHandle">A handle to an existing Restart Manager session.</param>
+            <param name="nFiles">The number of files being registered.</param>
+            <param name="rgsFilenames">
+              An array of null-terminated strings of full filename paths. This
+              parameter can be NULL if nFiles is 0.
+            </param>
+            <param name="nApplications">The number of processes being registered.</param>
+            <param name="rgApplications">
+              An array of RM_UNIQUE_PROCESS structures. This parameter can be
+              NULL if nApplications is 0.
+            </param>
+            <param name="nServices">The number of services to be registered.</param>
+            <param name="rgsServiceNames">
+              An array of null-terminated strings of service short names. This
+              parameter can be NULL if nServices is 0.
+            </param>
+            <returns>
+              This is the most recent error received. The function can return one of the system
+              error codes that are defined in Winerror.h.
+            </returns>
+        </member>
+        <member name="M:PluginManager.Sys.RestartManager.RestartManager.NativeMethods.RmStartSession(System.Int32@,System.Int32,System.String)">
+            <summary>
+              Starts a new Restart Manager session. A maximum of 64 Restart Manager sessions per
+              user session can be open on the system at the same time. When this function starts a
+              session, it returns a session handle and session key that can be used in subsequent calls to
+              the Restart Manager API.
+            </summary>
+            <param name="pSessionHandle">
+              A pointer to the handle of a Restart Manager session. The session
+              handle can be passed in subsequent calls to the Restart Manager API.
+            </param>
+            <param name="dwSessionFlags">Reserved. This parameter should be 0.</param>
+            <param name="strSessionKey">
+              A null-terminated string that contains the session key to the new
+              session. The string must be allocated before calling the RmStartSession function.
+            </param>
+            <returns>
+              This is the most recent error received. The function can return one of the system
+              error codes that are defined in Winerror.h.
+            </returns>
+        </member>
+        <member name="M:PluginManager.Sys.RestartManager.RestartManager.NativeMethods.RmEndSession(System.Int32)">
+            <summary>
+              Ends the Restart Manager session. This function should be called by the primary
+              installer that has previously started the session by calling the RmStartSession function.
+              The RmEndSession function can be called by a secondary installer that is joined to the
+              session once no more resources need to be registered by the secondary installer.
+            </summary>
+            <param name="dwSessionHandle">A handle to an existing Restart Manager session.</param>
+            <returns>
+              This is the most recent error received. The function can return one of the system
+              error codes that are defined in Winerror.h.
+            </returns>
+        </member>
+        <member name="M:PluginManager.Sys.RestartManager.RestartManager.NativeMethods.RmGetList(System.Int32,System.UInt32@,System.UInt32@,PluginManager.Sys.RestartManager.RestartManager.RM_PROCESS_INFO[],PluginManager.Sys.RestartManager.RestartManager.RM_REBOOT_REASON@)">
+            <summary>
+              Gets a list of all applications and services that are currently using resources that
+              have been registered with the Restart Manager session.
+            </summary>
+            <param name="dwSessionHandle">A handle to an existing Restart Manager session.</param>
+            <param name="pnProcInfoNeeded">
+              A pointer to an array size necessary to receive RM_PROCESS_INFO
+              structures required to return information for all affected applications and services.
+            </param>
+            <param name="pnProcInfo">
+              A pointer to the total number of RM_PROCESS_INFO structures in an
+              array and number of structures filled.
+            </param>
+            <param name="rgAffectedApps">
+              An array of RM_PROCESS_INFO structures that list the applications
+              and services using resources that have been registered with the session.
+            </param>
+            <param name="lpdwRebootReasons">
+              Pointer to location that receives a value of the
+              RM_REBOOT_REASON enumeration that describes the reason a system restart is needed.
+            </param>
+            <returns>
+              This is the most recent error received. The function can return one of the system
+              error codes that are defined in Winerror.h.
+            </returns>
+        </member>
+    </members>
+</doc>
